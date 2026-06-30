@@ -122,11 +122,36 @@ def calculate_advanced_probability(p1, p2, elo_p1, elo_p2):
         
     return max(0.01, min(0.99, prob_final)), p1_wins, p2_wins
 
+def buscar_cuotas_flexibles(h_name, a_name, odds_map):
+    """
+    Motor de búsqueda flexible. Permite encontrar las cuotas de Stake
+    incluso si Stake escribe los nombres al revés o con diferentes formatos.
+    """
+    # Intento 1: Coincidencia exacta (rápida)
+    m1 = f"{h_name}_{a_name}".replace(" ", "_")
+    m2 = f"{a_name}_{h_name}".replace(" ", "_")
+    if m1 in odds_map: return odds_map[m1]
+    if m2 in odds_map: return odds_map[m2]
+    
+    # Intento 2: Búsqueda flexible (por apellidos/palabras clave)
+    h_words = [w.lower() for w in h_name.replace(',', '').split() if len(w) > 2]
+    a_words = [w.lower() for w in a_name.replace(',', '').split() if len(w) > 2]
+    
+    for o_id, odds in odds_map.items():
+        o_id_lower = o_id.lower().replace('_', ' ').replace('-', ' ')
+        # Chequea si al menos un apellido del local y uno del visitante coinciden en Stake
+        h_hit = any(w in o_id_lower for w in h_words)
+        a_hit = any(w in o_id_lower for w in a_words)
+        if h_hit and a_hit:
+            return odds
+            
+    return None
+
 # ─── BARRA LATERAL (ASISTENTE STAKE + COP) ───
 st.sidebar.markdown("## 🎯 Asistente STAKE (Celular)")
 
-# 1. Enlace Directo a la App/Web de Stake (Deep Linking)
-url_stake_liga_pro = "https://stake.com/sports/table-tennis/czech-republic/liga-pro"
+# 1. Enlace Directo a la App/Web de Stake (Deep Linking) - ACTUALIZADO A STAKE COLOMBIA
+url_stake_liga_pro = "https://stake.com.co/deportes/table-tennis/world/czech-liga-pro"
 st.sidebar.markdown(f"""
 <a href="{url_stake_liga_pro}" target="_blank" style="text-decoration: none;">
     <button style="
@@ -141,7 +166,7 @@ st.sidebar.markdown(f"""
         font-size: 16px;
         margin-bottom: 15px;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);">
-        📱 ABRIR STAKE LIGA PRO
+        📱 ABRIR STAKE COLOMBIA
     </button>
 </a>
 """, unsafe_allow_html=True)
@@ -190,29 +215,19 @@ with tab_upcoming:
             odds_map = {}
             for _, row in df_odds.iterrows():
                 odds_map[row['match_id']] = (row['home_odd'], row['away_odd'])
+                
+            if not odds_map:
+                st.warning("⚠️ **ATENCIÓN:** Tu base de datos actual no tiene cuotas de Stake registradas. Para que los partidos aparezcan aquí, debes ejecutar el scraper en tu PC y actualizar el archivo `database.db` en GitHub.")
             
             cartelera = []
             stake_opportunities = []
+            partidos_sin_cuota = []
             
             for _, m in df_upcoming.iterrows():
                 h_name, a_name = m["home"], m["away"]
-                match_id = f"{h_name}_{a_name}".replace(" ", "_")
-                match_id_rev = f"{a_name}_{h_name}".replace(" ", "_")
                 
-                cuotas = odds_map.get(match_id) or odds_map.get(match_id_rev)
-                
-                # FILTRO ESTRICTO: Solo procesa y muestra partidos que YA existen en Stake
-                if not cuotas: continue
-                    
-                cuota_h, cuota_a = cuotas
-                elo_h = elo_dict.get(h_name, 1500)
-                elo_a = elo_dict.get(a_name, 1500)
-                
-                prob_h, h2h_h, h2h_a = calculate_advanced_probability(h_name, a_name, elo_h, elo_a)
-                prob_a = 1 - prob_h
-                
-                ev_h = (prob_h * cuota_h) - 1
-                ev_a = (prob_a * cuota_a) - 1
+                # Búsqueda Inteligente de Cuotas (ignora si Stake escribe los nombres distinto)
+                cuotas = buscar_cuotas_flexibles(h_name, a_name, odds_map)
                 
                 dt_local = None
                 if m.get("start_time"):
@@ -223,6 +238,25 @@ with tab_upcoming:
                 
                 fecha_str = dt_local.strftime("%A, %d %b").capitalize() if dt_local else "Desconocido"
                 hora_str = dt_local.strftime("%H:%M") if dt_local else "TBD"
+                
+                if not cuotas: 
+                    # Guardamos temporalmente los que no cruzaron por si quieres verlos
+                    partidos_sin_cuota.append({
+                        "Fecha": fecha_str,
+                        "Hora": hora_str,
+                        "Partido": f"{h_name} vs {a_name}"
+                    })
+                    continue
+                    
+                cuota_h, cuota_a = cuotas
+                elo_h = elo_dict.get(h_name, 1500)
+                elo_a = elo_dict.get(a_name, 1500)
+                
+                prob_h, h2h_h, h2h_a = calculate_advanced_probability(h_name, a_name, elo_h, elo_a)
+                prob_a = 1 - prob_h
+                
+                ev_h = (prob_h * cuota_h) - 1
+                ev_a = (prob_a * cuota_a) - 1
                 
                 monto_sugerido_cop = f"${calcular_monto_real(1.0):,.0f}"
                 
@@ -265,12 +299,12 @@ with tab_upcoming:
             if stake_opportunities:
                 st.dataframe(pd.DataFrame(stake_opportunities), use_container_width=True, hide_index=True)
             else:
-                st.info("Ningún partido cumple con el Valor Esperado (EV) positivo en este momento. Paciencia, la ventaja matemática llegará.")
+                st.info("Ningún partido de Stake cumple con el Valor Esperado (EV) positivo en este momento. Paciencia.")
             
             # --- 2. MOSTRAR CARTELERA COMPLETA (SOLO MERCADOS ACTIVOS EN STAKE) ---
             st.markdown("---")
             st.subheader("📅 Cartelera Activa en Stake")
-            st.caption("Estos son TODOS los partidos que actualmente tienen mercado abierto en Stake (sin partidos fantasma).")
+            st.caption("Estos son TODOS los partidos que el sistema ha enlazado exitosamente con cuotas reales de Stake.")
             
             if cartelera:
                 df_cartelera = pd.DataFrame(cartelera)
@@ -278,8 +312,14 @@ with tab_upcoming:
                     st.markdown(f"<div class='date-header'>Programación: {dia}</div>", unsafe_allow_html=True)
                     df_dia = df_cartelera[df_cartelera['Fecha'] == dia].drop(columns=['Fecha'])
                     st.markdown(df_dia.to_html(escape=False, index=False), unsafe_allow_html=True)
-            else:
-                st.info("No hay partidos en Stake en este preciso momento, o necesitas ejecutar tu scraper de cuotas para actualizar.")
+            elif odds_map:
+                st.info("Hay cuotas en la base de datos, pero los nombres difieren drásticamente y no se pudieron enlazar. Verifica la ejecución del scraper.")
+                
+            # --- 3. MOSTRAR PARTIDOS HUÉRFANOS (OPCIONAL/DEBUG) ---
+            if partidos_sin_cuota:
+                with st.expander("👀 Ver Partidos programados en sistema (Sin cuotas de Stake registradas)"):
+                    st.markdown("Estos partidos están próximos a jugarse, pero **no se encontraron sus cuotas** en la última actualización de tu base de datos local. Ejecuta tu scraper de Stake para verlos arriba.")
+                    st.dataframe(pd.DataFrame(partidos_sin_cuota), hide_index=True)
                 
         else:
             st.info("Esperando que el Scraper alimente la base de datos...")
