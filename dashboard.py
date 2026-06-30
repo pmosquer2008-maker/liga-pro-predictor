@@ -8,7 +8,6 @@ import pandas as pd
 import json
 import time
 import os
-import google.generativeai as genai
 from pathlib import Path
 from datetime import datetime, timedelta
 import db_manager
@@ -123,25 +122,6 @@ def calculate_advanced_probability(p1, p2, elo_p1, elo_p2):
         
     return max(0.01, min(0.99, prob_final)), p1_wins, p2_wins
 
-def get_gemini_analysis(match_str, p_apostado, p_oponente, prob_apostado, ev, cuota):
-    """Llama a la API de Gemini de forma segura para obtener una auditoría de la apuesta."""
-    try:
-        api_key = st.secrets["GEMINI_API_KEY"]
-    except:
-        api_key = os.environ.get("GEMINI_API_KEY")
-        
-    if not api_key:
-        return "⚠️ Error: No se encontró GEMINI_API_KEY en los Secrets de Streamlit."
-    
-    try:
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        prompt = f"Actúa como un experto en apuestas deportivas de tenis de mesa (Czech Liga Pro). Analiza este partido: {match_str}. Mi modelo cuantitativo le da a {p_apostado} (al que voy a apostar contra {p_oponente}) una probabilidad de ganar del {prob_apostado*100:.1f}% con un Valor Esperado (EV) de {ev:.2f} a cuota {cuota}. Dame una advertencia MUY BREVE (máximo 3 líneas) sobre riesgos psicológicos, de fatiga o de dinámica de juego que el algoritmo matemático podría no estar viendo. Sé directo."
-        response = model.generate_content(prompt)
-        return response.text
-    except Exception as e:
-        return f"Error conectando a la IA: {e}"
-
 # ─── BARRA LATERAL (ASISTENTE STAKE + COP) ───
 st.sidebar.markdown("## 🎯 Asistente STAKE (Celular)")
 
@@ -196,7 +176,7 @@ tab_upcoming, tab_results, tab_analytics, tab_pnl = st.tabs([
 ])
 
 # =====================================================================
-# TAB 1: CARTELERA SEGURA & VENTANA STAKE (MODIFICADO)
+# TAB 1: CARTELERA SEGURA & VENTANA STAKE (EXCLUSIVO STAKE)
 # =====================================================================
 with tab_upcoming:
     try:
@@ -220,8 +200,8 @@ with tab_upcoming:
                 match_id_rev = f"{a_name}_{h_name}".replace(" ", "_")
                 
                 cuotas = odds_map.get(match_id) or odds_map.get(match_id_rev)
-                # OJO: Esta es la línea que oculta los partidos sin cuota. 
-                # LA DEJAMOS INTACTA para cumplir tu regla de no borrar nada.
+                
+                # FILTRO ESTRICTO: Solo procesa y muestra partidos que YA existen en Stake
                 if not cuotas: continue
                     
                 cuota_h, cuota_a = cuotas
@@ -280,17 +260,17 @@ with tab_upcoming:
                     "Veredicto": veredicto
                 })
             
-            # --- 1. MOSTRAR VENTANA EXCLUSIVA DE STAKE ---
+            # --- 1. MOSTRAR VENTANA EXCLUSIVA DE STAKE (OPORTUNIDADES) ---
             st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>🔥 Radar Stake: Oportunidades de Valor (Ganador de Partido)</div>", unsafe_allow_html=True)
             if stake_opportunities:
                 st.dataframe(pd.DataFrame(stake_opportunities), use_container_width=True, hide_index=True)
             else:
                 st.info("Ningún partido cumple con el Valor Esperado (EV) positivo en este momento. Paciencia, la ventaja matemática llegará.")
             
-            # --- 2. MOSTRAR CARTELERA COMPLETA ---
+            # --- 2. MOSTRAR CARTELERA COMPLETA (SOLO MERCADOS ACTIVOS EN STAKE) ---
             st.markdown("---")
-            st.subheader("📅 Cartelera Completa (Todos los partidos detectados)")
-            st.caption("Aquí ves el 100% de la oferta, incluso los partidos que el algoritmo rechazó por no ser rentables.")
+            st.subheader("📅 Cartelera Activa en Stake")
+            st.caption("Estos son TODOS los partidos que actualmente tienen mercado abierto en Stake (sin partidos fantasma).")
             
             if cartelera:
                 df_cartelera = pd.DataFrame(cartelera)
@@ -298,42 +278,9 @@ with tab_upcoming:
                     st.markdown(f"<div class='date-header'>Programación: {dia}</div>", unsafe_allow_html=True)
                     df_dia = df_cartelera[df_cartelera['Fecha'] == dia].drop(columns=['Fecha'])
                     st.markdown(df_dia.to_html(escape=False, index=False), unsafe_allow_html=True)
-
-            # =====================================================================
-            # 3. NUEVO MÓDULO AÑADIDO: PARTIDOS SIN CUOTAS (CUMPLIENDO DIRECTIVA)
-            # =====================================================================
-            st.markdown("<br>#### ⏳ Partidos Programados (Esperando mercado en Stake)", unsafe_allow_html=True)
-            
-            # Recolectamos los que ya se mostraron arriba para no duplicarlos
-            partidos_visualizados = [c['Partido'] for c in cartelera] if cartelera else []
-            pendientes = []
-            
-            # Volvemos a iterar para rescatar a los que el filtro original ocultó
-            for _, m in df_upcoming.iterrows():
-                h_name, a_name = m["home"], m["away"]
-                partido_str = f"<b>{h_name}</b> vs <b>{a_name}</b>"
+            else:
+                st.info("No hay partidos en Stake en este preciso momento, o necesitas ejecutar tu scraper de cuotas para actualizar.")
                 
-                if partido_str not in partidos_visualizados:
-                    dt_l = None
-                    if m.get("start_time"):
-                        try:
-                            utc_t = datetime.fromisoformat(str(m["start_time"]).replace("Z", "+00:00"))
-                            dt_l = utc_t + timedelta(hours=timezone_offset)
-                        except: pass
-                    
-                    pendientes.append({
-                        "Fecha": dt_l.strftime("%d %b") if dt_l else "TBD",
-                        "Hora": dt_l.strftime("%H:%M") if dt_l else "TBD",
-                        "Partido": partido_str,
-                        "Estado": "⚠️ Stake aún no abre las cuotas"
-                    })
-            
-            if pendientes:
-                st.markdown(pd.DataFrame(pendientes).to_html(escape=False, index=False), unsafe_allow_html=True)
-            elif not cartelera:
-                st.info("No hay partidos futuros detectados en tu base de datos actual. Recuerda ejecutar el scraper en tu PC.")
-            # =====================================================================
-
         else:
             st.info("Esperando que el Scraper alimente la base de datos...")
     except Exception as e:
@@ -498,13 +445,6 @@ with tab_pnl:
                         st.info(f"👍 Apuesta decente. Probabilidad: **{prob_apostado*100:.1f}%** | EV: {ev:.2f}")
                     else:
                         st.warning(f"⚠️ Alto Riesgo. Probabilidad baja (**{prob_apostado*100:.1f}%**). ¿Estás seguro?")
-                        
-                    if st.button("🤖 Auditoría de IA (Gemini)", use_container_width=True):
-                        with st.spinner("Consultando al oráculo..."):
-                            ia_target = p_home if apostado_a == p_home else p_away
-                            ia_oponente = p_away if apostado_a == p_home else p_home
-                            analisis_ia = get_gemini_analysis(selected_match, ia_target, ia_oponente, prob_apostado, ev, n_cuota)
-                            st.info(f"**Veredicto del Agente IA:**\n{analisis_ia}")
                 
                 if st.button("💾 Guardar Apuesta en el Tracker", type="primary", use_container_width=True):
                     save_bet(selected_match, apostado_a, n_cuota, n_stake, ev)
