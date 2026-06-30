@@ -9,7 +9,7 @@ import json
 import time
 import os
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import db_manager
 
 # Configuración de página a pantalla completa con icono
@@ -79,11 +79,11 @@ init_bet_tracker()
 def save_bet(partido, jugador, cuota, stake, ev):
     try:
         conn = db_manager.get_connection()
-        fecha_actual = datetime.now().strftime("%Y-%m-%d %H:%M")
+        fecha_actual = (datetime.now(timezone.utc) + timedelta(hours=-5)).strftime("%Y-%m-%d %H:%M")
         conn.execute('''
             INSERT INTO bet_history (fecha, partido, jugador_apostado, cuota, stake, estado, ev_esperado)
             VALUES (?, ?, ?, ?, ?, 'Pendiente', ?)
-        ''')
+        ''', (fecha_actual, partido, jugador, cuota, stake, ev))
         conn.commit()
         st.toast("✅ Apuesta guardada exitosamente en el Tracker")
     except Exception as e:
@@ -178,7 +178,6 @@ def calcular_monto_real(multiplicador=1.0):
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("## ⚙️ Filtros del Motor")
-timezone_offset = st.sidebar.number_input("Zona Horaria (UTC)", min_value=-12, max_value=14, value=-5, step=1)
 seguridad_minima = st.sidebar.slider("Probabilidad Mínima (%)", 60, 95, 70, help="Filtra partidos riesgosos.")
 
 st.sidebar.markdown("---")
@@ -212,34 +211,37 @@ with tab_upcoming:
             odds_map = {}
             for _, row in df_odds.iterrows():
                 odds_map[row['match_id']] = (row['home_odd'], row['away_odd'])
-                
-            if not odds_map:
-                st.warning("⚠️ **ATENCIÓN:** Tu base de datos actual no tiene cuotas de Stake registradas. Para que los partidos aparezcan aquí, debes ejecutar el scraper en tu PC y actualizar el archivo `database.db` en GitHub.")
             
             cartelera = []
             partidos_activos_analisis = [] # Lista guardada para el selector de análisis
-            partidos_sin_cuota = []
+            now_utc = datetime.now(timezone.utc)
             
             for _, m in df_upcoming.iterrows():
                 h_name, a_name = m["home"], m["away"]
                 
                 # Búsqueda Inteligente de Cuotas
                 cuotas = buscar_cuotas_flexibles(h_name, a_name, odds_map)
+                if not cuotas: 
+                    continue
                 
+                # Gestión Estricta de la Hora Colombiana (UTC-5)
+                is_future = False
                 dt_local = None
                 if m.get("start_time"):
                     try:
-                        utc_time = datetime.fromisoformat(str(m["start_time"]).replace("Z", "+00:00"))
-                        dt_local = utc_time + timedelta(hours=timezone_offset)
+                        time_str = str(m["start_time"]).replace("Z", "+00:00")
+                        if "+" not in time_str and "-" not in time_str[10:]:
+                            time_str += "+00:00" # Asegurar formato si llega raro
+                        utc_time = datetime.fromisoformat(time_str)
+                        dt_local = utc_time + timedelta(hours=-5) # FIJADO A COLOMBIA
+                        
+                        if utc_time > now_utc:
+                            is_future = True
                     except: pass
                 
                 fecha_str = dt_local.strftime("%A, %d %b").capitalize() if dt_local else "Desconocido"
                 hora_str = dt_local.strftime("%H:%M") if dt_local else "TBD"
                 
-                if not cuotas: 
-                    partidos_sin_cuota.append({"Fecha": fecha_str, "Hora": hora_str, "Partido": f"{h_name} vs {a_name}"})
-                    continue
-                    
                 cuota_h, cuota_a = cuotas
                 elo_h = elo_dict.get(h_name, 1500)
                 elo_a = elo_dict.get(a_name, 1500)
@@ -262,7 +264,7 @@ with tab_upcoming:
                 else:
                     veredicto = "<span class='low-prob'>Riesgo (Sin Valor)</span>"
                 
-                # Llenado de la Cartelera Principal (Mejorada)
+                # Llenado de la Cartelera Principal
                 cartelera.append({
                     "Fecha": fecha_str,
                     "Hora": hora_str,
@@ -273,18 +275,20 @@ with tab_upcoming:
                     "Acción Recomendada": veredicto
                 })
                 
-                # Guardar datos puros para la vista de Análisis Profundo
-                partidos_activos_analisis.append({
-                    "home": h_name, "away": a_name,
-                    "cuota_h": cuota_h, "cuota_a": cuota_a,
-                    "prob_h": prob_h, "prob_a": prob_a,
-                    "ev_h": ev_h, "ev_a": ev_a,
-                    "elo_h": elo_h, "elo_a": elo_a,
-                    "h2h_h": h2h_h, "h2h_a": h2h_a
-                })
+                # ALIMENTAR ANÁLISIS PROFUNDO SÓLO SI EL PARTIDO ES EN EL FUTURO
+                if is_future:
+                    partidos_activos_analisis.append({
+                        "home": h_name, "away": a_name,
+                        "cuota_h": cuota_h, "cuota_a": cuota_a,
+                        "prob_h": prob_h, "prob_a": prob_a,
+                        "ev_h": ev_h, "ev_a": ev_a,
+                        "elo_h": elo_h, "elo_a": elo_a,
+                        "h2h_h": h2h_h, "h2h_a": h2h_a,
+                        "hora": hora_str
+                    })
 
             # --- 1. MOSTRAR CARTELERA COMPLETA (MEJORADA Y ÚNICA) ---
-            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>📅 Cartelera Activa en Stake (Mercados Abiertos)</div>", unsafe_allow_html=True)
+            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>📅 Cartelera Activa en Stake (Hora Colombiana)</div>", unsafe_allow_html=True)
             
             if cartelera:
                 df_cartelera = pd.DataFrame(cartelera)
@@ -292,81 +296,79 @@ with tab_upcoming:
                     st.markdown(f"#### Programación: {dia}")
                     df_dia = df_cartelera[df_cartelera['Fecha'] == dia].drop(columns=['Fecha'])
                     st.markdown(df_dia.to_html(escape=False, index=False), unsafe_allow_html=True)
-            elif odds_map:
-                st.info("Hay cuotas en la base de datos, pero los nombres difieren drásticamente y no se pudieron enlazar. Verifica la ejecución del scraper.")
+            else:
+                st.info("No hay cuotas activas actualmente. Asegúrate de correr el Scraper para sincronizar tu base de datos.")
             
             # --- 2. MÓDULO INTERACTIVO DE ANÁLISIS PROFUNDO ---
             st.markdown("---")
-            st.subheader("🔍 Análisis Profundo de Partido")
-            st.caption("Selecciona cualquier partido de arriba para desgajar las matemáticas, ELO y fatiga antes de apostar.")
+            st.subheader("🔍 Análisis Profundo de Partido (Pre-Match)")
+            st.caption("Solo se muestran los partidos que **aún no han comenzado**, para que puedas analizarlos en frío antes de apostar.")
             
-            opciones_partidos = ["Seleccionar partido..."] + [f"{p['home']} vs {p['away']}" for p in partidos_activos_analisis]
-            seleccion = st.selectbox("Selecciona un juego vivo en Stake:", opciones_partidos)
-            
-            if seleccion != "Seleccionar partido...":
-                p_data = next(p for p in partidos_activos_analisis if f"{p['home']} vs {p['away']}" == seleccion)
+            if partidos_activos_analisis:
+                opciones_partidos = ["Seleccionar partido..."] + [f"({p['hora']}) {p['home']} vs {p['away']}" for p in partidos_activos_analisis]
+                seleccion = st.selectbox("Selecciona un juego próximo en Stake:", opciones_partidos)
                 
-                # Extracción de fatiga para la vista profunda
-                fatiga_h = db_manager.get_player_fatigue(p_data['home'])
-                fatiga_a = db_manager.get_player_fatigue(p_data['away'])
-                
-                st.markdown(f"<h3 style='text-align:center; color:#f8fafc; margin-top:20px;'>{p_data['home']} vs {p_data['away']}</h3>", unsafe_allow_html=True)
-                
-                c1, c2 = st.columns(2)
-                
-                with c1:
-                    is_fav = p_data['prob_h'] > p_data['prob_a']
-                    st.markdown(f"""
-                    <div class='metric-card' style='border-color: {"#3b82f6" if is_fav else "#334155"};'>
-                        <h3>{p_data['home']} (Local)</h3>
-                        <p style='margin-bottom:5px'><b>Prob. Modelo:</b> <span style='font-size:1.4rem; color:{"#34d399" if is_fav else "#94a3b8"};'>{p_data['prob_h']*100:.1f}%</span></p>
-                        <p style='margin-bottom:5px'><b>Cuota Stake:</b> {p_data['cuota_h']}</p>
-                        <p style='margin-bottom:5px'><b>Valor EV:</b> {'<span style="color:#34d399">+' + str(round(p_data['ev_h'],2)) + ' (Rentable)</span>' if p_data['ev_h'] > 0 else '<span style="color:#f87171">' + str(round(p_data['ev_h'],2)) + ' (No apostar)</span>'}</p>
-                        <hr style='border-color:#334155'>
-                        <p style='margin:0; font-size:0.9rem; color:#cbd5e1'>ELO: {int(p_data['elo_h'])} | Fatiga (24h): <b>{fatiga_h}</b> juegos</p>
-                    </div>
-                    """, unsafe_allow_html=True)
+                if seleccion != "Seleccionar partido...":
+                    # Extraemos los nombres quitando la hora del inicio del string "({hora}) {home} vs {away}"
+                    match_str = seleccion.split(") ")[1] 
+                    p_data = next(p for p in partidos_activos_analisis if f"{p['home']} vs {p['away']}" == match_str)
                     
-                with c2:
-                    is_fav_a = p_data['prob_a'] > p_data['prob_h']
-                    st.markdown(f"""
-                    <div class='metric-card' style='border-color: {"#3b82f6" if is_fav_a else "#334155"};'>
-                        <h3>{p_data['away']} (Visitante)</h3>
-                        <p style='margin-bottom:5px'><b>Prob. Modelo:</b> <span style='font-size:1.4rem; color:{"#34d399" if is_fav_a else "#94a3b8"};'>{p_data['prob_a']*100:.1f}%</span></p>
-                        <p style='margin-bottom:5px'><b>Cuota Stake:</b> {p_data['cuota_a']}</p>
-                        <p style='margin-bottom:5px'><b>Valor EV:</b> {'<span style="color:#34d399">+' + str(round(p_data['ev_a'],2)) + ' (Rentable)</span>' if p_data['ev_a'] > 0 else '<span style="color:#f87171">' + str(round(p_data['ev_a'],2)) + ' (No apostar)</span>'}</p>
-                        <hr style='border-color:#334155'>
-                        <p style='margin:0; font-size:0.9rem; color:#cbd5e1'>ELO: {int(p_data['elo_a'])} | Fatiga (24h): <b>{fatiga_a}</b> juegos</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-                
-                st.info(f"📊 **Contexto Histórico (Últimos 150):** {p_data['home']} ha ganado **{p_data['h2h_h']}** veces, mientras que {p_data['away']} ha ganado **{p_data['h2h_a']}** veces en enfrentamientos directos.")
-                
-                # Dictamen Final del Modelo
-                if p_data['ev_h'] > 0 and (p_data['prob_h']*100) >= seguridad_minima:
-                    st.success(f"🎯 **DICTAMEN DEL MODELO:** Apuesta altamente recomendada a **{p_data['home']}** a cuota {p_data['cuota_h']}. El modelo detecta una ventaja matemática superior a la casa de apuestas.")
-                elif p_data['ev_a'] > 0 and (p_data['prob_a']*100) >= seguridad_minima:
-                    st.success(f"🎯 **DICTAMEN DEL MODELO:** Apuesta altamente recomendada a **{p_data['away']}** a cuota {p_data['cuota_a']}. El modelo detecta una ventaja matemática superior a la casa de apuestas.")
-                else:
-                    st.warning("⛔ **DICTAMEN DEL MODELO:** Abstenerse de apostar. Ningún jugador ofrece un Valor Esperado (EV) positivo suficiente para arriesgar el capital con la seguridad actual.")
-
-            # --- 3. MOSTRAR PARTIDOS HUÉRFANOS (Expander para que no estorbe) ---
-            if partidos_sin_cuota:
-                st.markdown("---")
-                with st.expander("👀 Ver Partidos programados sin cuotas registradas aún"):
-                    st.markdown("Estos partidos se acercan, pero la base de datos no tiene sus cuotas actualizadas desde Stake. Corre tu scraper para visualizarlos arriba.")
-                    st.dataframe(pd.DataFrame(partidos_sin_cuota), hide_index=True, use_container_width=True)
+                    # Extracción de fatiga para la vista profunda
+                    fatiga_h = db_manager.get_player_fatigue(p_data['home'])
+                    fatiga_a = db_manager.get_player_fatigue(p_data['away'])
+                    
+                    st.markdown(f"<h3 style='text-align:center; color:#f8fafc; margin-top:20px;'>{p_data['home']} vs {p_data['away']}</h3>", unsafe_allow_html=True)
+                    
+                    c1, c2 = st.columns(2)
+                    
+                    with c1:
+                        is_fav = p_data['prob_h'] > p_data['prob_a']
+                        st.markdown(f"""
+                        <div class='metric-card' style='border-color: {"#3b82f6" if is_fav else "#334155"};'>
+                            <h3>{p_data['home']} (Local)</h3>
+                            <p style='margin-bottom:5px'><b>Prob. Modelo:</b> <span style='font-size:1.4rem; color:{"#34d399" if is_fav else "#94a3b8"};'>{p_data['prob_h']*100:.1f}%</span></p>
+                            <p style='margin-bottom:5px'><b>Cuota Stake:</b> {p_data['cuota_h']}</p>
+                            <p style='margin-bottom:5px'><b>Valor EV:</b> {'<span style="color:#34d399">+' + str(round(p_data['ev_h'],2)) + ' (Rentable)</span>' if p_data['ev_h'] > 0 else '<span style="color:#f87171">' + str(round(p_data['ev_h'],2)) + ' (No apostar)</span>'}</p>
+                            <hr style='border-color:#334155'>
+                            <p style='margin:0; font-size:0.9rem; color:#cbd5e1'>ELO: {int(p_data['elo_h'])} | Fatiga (24h): <b>{fatiga_h}</b> juegos</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                    with c2:
+                        is_fav_a = p_data['prob_a'] > p_data['prob_h']
+                        st.markdown(f"""
+                        <div class='metric-card' style='border-color: {"#3b82f6" if is_fav_a else "#334155"};'>
+                            <h3>{p_data['away']} (Visitante)</h3>
+                            <p style='margin-bottom:5px'><b>Prob. Modelo:</b> <span style='font-size:1.4rem; color:{"#34d399" if is_fav_a else "#94a3b8"};'>{p_data['prob_a']*100:.1f}%</span></p>
+                            <p style='margin-bottom:5px'><b>Cuota Stake:</b> {p_data['cuota_a']}</p>
+                            <p style='margin-bottom:5px'><b>Valor EV:</b> {'<span style="color:#34d399">+' + str(round(p_data['ev_a'],2)) + ' (Rentable)</span>' if p_data['ev_a'] > 0 else '<span style="color:#f87171">' + str(round(p_data['ev_a'],2)) + ' (No apostar)</span>'}</p>
+                            <hr style='border-color:#334155'>
+                            <p style='margin:0; font-size:0.9rem; color:#cbd5e1'>ELO: {int(p_data['elo_a'])} | Fatiga (24h): <b>{fatiga_a}</b> juegos</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                    
+                    st.info(f"📊 **Contexto Histórico (Últimos 150):** {p_data['home']} ha ganado **{p_data['h2h_h']}** veces, mientras que {p_data['away']} ha ganado **{p_data['h2h_a']}** veces en enfrentamientos directos.")
+                    
+                    # Dictamen Final del Modelo
+                    if p_data['ev_h'] > 0 and (p_data['prob_h']*100) >= seguridad_minima:
+                        st.success(f"🎯 **DICTAMEN DEL MODELO:** Apuesta altamente recomendada a **{p_data['home']}** a cuota {p_data['cuota_h']}. El modelo detecta una ventaja matemática superior a la casa de apuestas.")
+                    elif p_data['ev_a'] > 0 and (p_data['prob_a']*100) >= seguridad_minima:
+                        st.success(f"🎯 **DICTAMEN DEL MODELO:** Apuesta altamente recomendada a **{p_data['away']}** a cuota {p_data['cuota_a']}. El modelo detecta una ventaja matemática superior a la casa de apuestas.")
+                    else:
+                        st.warning("⛔ **DICTAMEN DEL MODELO:** Abstenerse de apostar. Ningún jugador ofrece un Valor Esperado (EV) positivo suficiente para arriesgar el capital con la seguridad actual.")
+            else:
+                st.info("No hay partidos próximos disponibles en este momento. Todos los juegos del día ya han comenzado o finalizado.")
                 
         else:
             st.info("Esperando que el Scraper alimente la base de datos...")
     except Exception as e:
-        st.error(f"Iniciando base de datos o procesando tabla: {e}")
+        st.error(f"Error procesando la cartelera: {e}")
 
 # =====================================================================
 # TAB 2: ÚLTIMOS RESULTADOS
 # =====================================================================
 with tab_results:
-    st.markdown("### 🏆 Resultados Recientes")
+    st.markdown("### 🏆 Resultados Recientes (Hora Colombia)")
     try:
         conn = db_manager.get_connection()
         df_recent = pd.read_sql("SELECT start_time, home, away, home_sets, away_sets FROM matches WHERE status='finalizado' ORDER BY start_time DESC LIMIT 20", conn)
@@ -374,7 +376,12 @@ with tab_results:
         if not df_recent.empty:
             resultados = []
             for _, r in df_recent.iterrows():
-                dt_local = datetime.fromisoformat(str(r["start_time"]).replace("Z", "+00:00")) + timedelta(hours=timezone_offset)
+                try:
+                    time_str = str(r["start_time"]).replace("Z", "+00:00")
+                    if "+" not in time_str and "-" not in time_str[10:]: time_str += "+00:00"
+                    dt_local = datetime.fromisoformat(time_str) + timedelta(hours=-5) # FIJADO A COLOMBIA
+                except:
+                    dt_local = None
                 
                 h_name, a_name = r['home'], r['away']
                 h_sets, a_sets = r['home_sets'], r['away_sets']
@@ -387,7 +394,7 @@ with tab_results:
                     a_disp = f"<span style='color:#34d399; font-weight:bold;'>{a_name}</span>"
                     
                 resultados.append({
-                    "Fecha": dt_local.strftime("%d %b - %H:%M"),
+                    "Fecha": dt_local.strftime("%d %b - %H:%M") if dt_local else "N/A",
                     "Jugador Local": h_disp,
                     "Marcador": f"<b style='color:#f8fafc; font-size:1.1rem;'>{h_sets} - {a_sets}</b>",
                     "Jugador Visitante": a_disp
