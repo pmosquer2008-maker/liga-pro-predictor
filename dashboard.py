@@ -93,10 +93,8 @@ def calculate_advanced_probability(p1, p2, elo_p1, elo_p2):
     Función predictiva avanzada. 
     Integra ELO, H2H Dinámico (150 partidos) y Fatiga.
     """
-    # 1. Probabilidad Base (ELO)
     prob_base = 1 / (1 + 10 ** ((elo_p2 - elo_p1) / 400))
     
-    # 2. Refinamiento: H2H Dinámico (Límite 150 partidos)
     h2h_data = db_manager.get_h2h(p1, p2, limit=150)
     p1_wins, p2_wins = 0, 0
     if not h2h_data.empty:
@@ -113,22 +111,52 @@ def calculate_advanced_probability(p1, p2, elo_p1, elo_p2):
     else:
         prob_final = prob_base
         
-    # 3. Refinamiento: Lógica de Fatiga (Últimas 24h)
     fatigue_p1 = db_manager.get_player_fatigue(p1)
     fatigue_p2 = db_manager.get_player_fatigue(p2)
     
     if fatigue_p1 >= 4 and fatigue_p2 < 4:
-        prob_final -= 0.05 # Penalización por cansancio
+        prob_final -= 0.05 
     elif fatigue_p2 >= 4 and fatigue_p1 < 4:
         prob_final += 0.05
         
     return max(0.01, min(0.99, prob_final)), p1_wins, p2_wins
 
-# ─── BARRA LATERAL ───
-st.sidebar.markdown("## ⚙️ Configuración")
-timezone_offset = st.sidebar.number_input("Zona Horaria (UTC)", min_value=-12, max_value=14, value=-5, step=1)
+# ─── BARRA LATERAL (ASISTENTE STAKE + COP) ───
+st.sidebar.markdown("## 🎯 Asistente STAKE (Celular)")
 
-st.sidebar.markdown("## 🎯 Filtro de Seguridad")
+# 1. Enlace Directo a la App/Web de Stake (Deep Linking)
+# Este enlace abrirá la App (PWA) de Stake si la tienes instalada, o su versión móvil optimizada
+url_stake_liga_pro = "https://stake.com/sports/table-tennis/czech-republic/liga-pro"
+st.sidebar.markdown(f"""
+<a href="{url_stake_liga_pro}" target="_blank" style="text-decoration: none;">
+    <button style="
+        width: 100%;
+        background-color: #1475e1;
+        color: white;
+        border: none;
+        padding: 14px;
+        font-weight: 800;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);">
+        📱 ABRIR STAKE LIGA PRO
+    </button>
+</a>
+""", unsafe_allow_html=True)
+
+# 2. Configuración en Pesos Colombianos (COP)
+st.sidebar.markdown("### 💰 Calculadora (COP)")
+moneda_stake = st.sidebar.selectbox("Moneda Activa:", ["COP"])
+valor_unidad = st.sidebar.number_input(f"Valor 1 Unidad (COP):", min_value=1000, value=10000, step=5000, format="%d")
+
+def calcular_monto_real(multiplicador=1.0):
+    return valor_unidad * multiplicador
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("## ⚙️ Filtros del Motor")
+timezone_offset = st.sidebar.number_input("Zona Horaria (UTC)", min_value=-12, max_value=14, value=-5, step=1)
 seguridad_minima = st.sidebar.slider("Probabilidad Mínima (%)", 60, 95, 70, help="Filtra partidos riesgosos.")
 
 st.sidebar.markdown("---")
@@ -136,19 +164,19 @@ if st.sidebar.button("🔄 Refrescar Pantalla", use_container_width=True):
     st.rerun()
 
 # ─── ENCABEZADO PRINCIPAL ───
-st.title("⚡ Czech Liga Pro · Quantitative Engine")
-st.markdown("<p style='color:#94a3b8; font-size:1.1rem; margin-top:-15px;'>Filtrado algorítmico y detección de ventaja matemática (Pre-Match)</p>", unsafe_allow_html=True)
+st.title("⚡ Strike Engine · Stake Edition")
+st.markdown("<p style='color:#94a3b8; font-size:1.1rem; margin-top:-15px;'>Filtro algorítmico exclusivo para Mercado: <b>GANADOR DEL PARTIDO</b></p>", unsafe_allow_html=True)
 
 # ─── ARQUITECTURA MULTI-PESTAÑA ───
 tab_upcoming, tab_results, tab_analytics, tab_pnl = st.tabs([
-    "🎯 Cartelera Segura (Stake)", 
+    "🎯 Radar Stake & Cartelera", 
     "🏆 Últimos Resultados",
     "📊 Jugadores & Analytics",
-    "📒 Tracker de Apuestas"
+    "📒 Tracker (COP)"
 ])
 
 # =====================================================================
-# TAB 1: CARTELERA SEGURA & VENTANA STAKE
+# TAB 1: CARTELERA SEGURA & VENTANA STAKE (MODIFICADO)
 # =====================================================================
 with tab_upcoming:
     try:
@@ -172,17 +200,16 @@ with tab_upcoming:
                 match_id_rev = f"{a_name}_{h_name}".replace(" ", "_")
                 
                 cuotas = odds_map.get(match_id) or odds_map.get(match_id_rev)
-                if not cuotas: continue # Solo procesa partidos que existen en Stake
+                if not cuotas: continue
                     
                 cuota_h, cuota_a = cuotas
                 elo_h = elo_dict.get(h_name, 1500)
                 elo_a = elo_dict.get(a_name, 1500)
                 
-                # Inteligencia Predictiva (H2H 150 + Fatiga)
+                # Inteligencia Predictiva exclusiva para Ganador de Partido
                 prob_h, h2h_h, h2h_a = calculate_advanced_probability(h_name, a_name, elo_h, elo_a)
                 prob_a = 1 - prob_h
                 
-                # Cálculo de Valor Esperado (EV)
                 ev_h = (prob_h * cuota_h) - 1
                 ev_a = (prob_a * cuota_a) - 1
                 
@@ -196,26 +223,26 @@ with tab_upcoming:
                 fecha_str = dt_local.strftime("%A, %d %b").capitalize() if dt_local else "Desconocido"
                 hora_str = dt_local.strftime("%H:%M") if dt_local else "TBD"
                 
-                # --- ALGORITMO DE VENTANA STAKE (EV > 0) ---
+                # --- ALGORITMO DE VENTANA STAKE (EV > 0) + MONTO COP ---
+                monto_sugerido_cop = f"${calcular_monto_real(1.0):,.0f}"
+                
                 if ev_h > 0 and (prob_h * 100) >= seguridad_minima:
                     stake_opportunities.append({
-                        "Fecha": dt_local.strftime("%d %b") if dt_local else "TBD",
                         "Hora": hora_str,
-                        "Jugador a Apostar": h_name,
+                        "Apostar por (Ganador)": h_name,
                         "Oponente": a_name,
                         "Cuota (Stake)": cuota_h,
-                        "Prob. Éxito": f"{prob_h*100:.1f}%",
-                        "Valor (EV)": f"+{ev_h:.2f} ✅"
+                        "Prob.": f"{prob_h*100:.1f}%",
+                        "Invertir": monto_sugerido_cop
                     })
                 elif ev_a > 0 and (prob_a * 100) >= seguridad_minima:
                     stake_opportunities.append({
-                        "Fecha": dt_local.strftime("%d %b") if dt_local else "TBD",
                         "Hora": hora_str,
-                        "Jugador a Apostar": a_name,
+                        "Apostar por (Ganador)": a_name,
                         "Oponente": h_name,
                         "Cuota (Stake)": cuota_a,
-                        "Prob. Éxito": f"{prob_a*100:.1f}%",
-                        "Valor (EV)": f"+{ev_a:.2f} ✅"
+                        "Prob.": f"{prob_a*100:.1f}%",
+                        "Invertir": monto_sugerido_cop
                     })
 
                 # Preparar tabla general Cartelera
@@ -224,8 +251,7 @@ with tab_upcoming:
                 elif max_prob >= 65: veredicto = f"<span class='med-prob'>✔️ Favorito ({(max_prob):.0f}%)</span>"
                 else: veredicto = "<span class='low-prob'>Riesgo (Igualado)</span>"
                 
-                if max_prob < seguridad_minima: continue
-                
+                # Para la cartelera completa, guardamos todos los partidos
                 cartelera.append({
                     "Fecha": fecha_str,
                     "Hora": hora_str,
@@ -237,17 +263,21 @@ with tab_upcoming:
                 })
             
             # --- 1. MOSTRAR VENTANA EXCLUSIVA DE STAKE ---
-            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>🔥 Radar de Stake (Oportunidades de Valor)</div>", unsafe_allow_html=True)
+            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>🔥 Radar Stake: Oportunidades de Valor (Ganador de Partido)</div>", unsafe_allow_html=True)
             if stake_opportunities:
                 st.dataframe(pd.DataFrame(stake_opportunities), use_container_width=True, hide_index=True)
             else:
-                st.info("No hay Valor Esperado (EV) positivo en la cartelera actual considerando tu filtro de seguridad. Mantén la disciplina.")
+                st.info("Ningún partido cumple con el Valor Esperado (EV) positivo en este momento. Paciencia, la ventaja matemática llegará.")
             
-            # --- 2. MOSTRAR CARTELERA GENERAL ---
+            # --- 2. MOSTRAR CARTELERA COMPLETA ---
+            st.markdown("---")
+            st.subheader("📅 Cartelera Completa (Todos los partidos detectados)")
+            st.caption("Aquí ves el 100% de la oferta, incluso los partidos que el algoritmo rechazó por no ser rentables.")
+            
             if cartelera:
                 df_cartelera = pd.DataFrame(cartelera)
                 for dia in df_cartelera['Fecha'].unique():
-                    st.markdown(f"<div class='date-header'>📅 Cartelera General: {dia}</div>", unsafe_allow_html=True)
+                    st.markdown(f"<div class='date-header'>Programación: {dia}</div>", unsafe_allow_html=True)
                     df_dia = df_cartelera[df_cartelera['Fecha'] == dia].drop(columns=['Fecha'])
                     st.markdown(df_dia.to_html(escape=False, index=False), unsafe_allow_html=True)
         else:
@@ -260,7 +290,6 @@ with tab_upcoming:
 # =====================================================================
 with tab_results:
     st.markdown("### 🏆 Resultados Recientes")
-    st.caption("Los últimos 20 partidos finalizados en la liga.")
     try:
         conn = db_manager.get_connection()
         df_recent = pd.read_sql("SELECT start_time, home, away, home_sets, away_sets FROM matches WHERE status='finalizado' ORDER BY start_time DESC LIMIT 20", conn)
@@ -273,7 +302,6 @@ with tab_results:
                 h_name, a_name = r['home'], r['away']
                 h_sets, a_sets = r['home_sets'], r['away_sets']
                 
-                # Resaltar al ganador
                 if h_sets > a_sets:
                     h_disp = f"<span style='color:#34d399; font-weight:bold;'>{h_name}</span>"
                     a_disp = f"<span style='color:#94a3b8;'>{a_name}</span>"
@@ -371,15 +399,14 @@ with tab_analytics:
         st.error(f"Error analizando jugador: {e}")
 
 # =====================================================================
-# TAB 4: BET TRACKER & P&L
+# TAB 4: BET TRACKER & P&L (ACTUALIZADO A COP)
 # =====================================================================
 with tab_pnl:
     try:
         conn = db_manager.get_connection()
         df_bets = pd.read_sql("SELECT * FROM bet_history", conn)
         
-        st.markdown("### 📒 Registro de Apuesta (Asistido por IA)")
-        st.caption("Selecciona el partido de la cartelera y el sistema auditará la apuesta antes de guardarla.")
+        st.markdown("### 📒 Registro de Apuesta en COP")
         
         df_up = pd.read_sql("SELECT home, away FROM upcoming", conn)
         match_options = ["Seleccionar Partido..."] + [f"{r['home']} vs {r['away']}" for _, r in df_up.iterrows()]
@@ -387,7 +414,7 @@ with tab_pnl:
         with st.container(border=True):
             col1, col2 = st.columns(2)
             with col1:
-                selected_match = st.selectbox("1. Selecciona el Partido a apostar", match_options)
+                selected_match = st.selectbox("1. Partido a apostar (Ganador)", match_options)
             
             if selected_match != "Seleccionar Partido...":
                 p_home, p_away = selected_match.split(" vs ")
@@ -397,9 +424,8 @@ with tab_pnl:
                 
                 col3, col4, col5 = st.columns([1,1,2])
                 n_cuota = col3.number_input("3. Cuota Ofrecida", 1.01, step=0.1)
-                n_stake = col4.number_input("4. Dinero ($)", 1.0, step=5.0)
+                n_stake = col4.number_input("4. Inversión (COP)", min_value=1000, value=int(valor_unidad), step=1000)
                 
-                # Evaluación Inteligente Unificada
                 df_p = pd.read_sql("SELECT name, elo FROM players", conn)
                 elo_dict = dict(zip(df_p.name, df_p.elo))
                 elo_h = elo_dict.get(p_home, 1500)
@@ -425,7 +451,7 @@ with tab_pnl:
                     st.rerun()
 
         st.divider()
-        st.markdown("### 💰 Contabilidad General (P&L)")
+        st.markdown("### 💰 Contabilidad General (P&L en COP)")
         
         if not df_bets.empty:
             df_resueltas = df_bets[df_bets['estado'].isin(['Ganada', 'Perdida'])]
@@ -439,8 +465,8 @@ with tab_pnl:
                 
                 st.markdown(f"""
                 <div style="display:flex; gap:15px; margin-bottom:20px;">
-                    <div class="metric-card" style="flex:1;"><h3>Beneficio Neto ($)</h3><h2 style="color:{'#34d399' if profit>=0 else '#f87171'}">${profit:.2f}</h2></div>
-                    <div class="metric-card" style="flex:1;"><h3>Total Invertido</h3><h2>${t_apostado:.2f}</h2></div>
+                    <div class="metric-card" style="flex:1;"><h3>Beneficio Neto (COP)</h3><h2 style="color:{'#34d399' if profit>=0 else '#f87171'}">${profit:,.0f}</h2></div>
+                    <div class="metric-card" style="flex:1;"><h3>Total Invertido</h3><h2>${t_apostado:,.0f}</h2></div>
                     <div class="metric-card" style="flex:1;"><h3>Strike Rate (Acierto)</h3><h2 style="color:#60a5fa">{win_rate:.1f}%</h2></div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -452,7 +478,7 @@ with tab_pnl:
                 df_bets,
                 column_config={
                     "estado": st.column_config.SelectboxColumn("Estado", options=["Pendiente", "Ganada", "Perdida", "Anulada"]),
-                    "stake": st.column_config.NumberColumn(format="$%.2f"),
+                    "stake": st.column_config.NumberColumn(format="$%d"),
                     "cuota": st.column_config.NumberColumn(format="%.2f"),
                 },
                 disabled=["fecha", "partido", "jugador_apostado", "ev_esperado"],
