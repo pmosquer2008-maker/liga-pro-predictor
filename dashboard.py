@@ -7,6 +7,8 @@ import streamlit as st
 import pandas as pd
 import json
 import time
+import os
+import google.generativeai as genai
 from pathlib import Path
 from datetime import datetime, timedelta
 import db_manager
@@ -120,6 +122,25 @@ def calculate_advanced_probability(p1, p2, elo_p1, elo_p2):
         prob_final += 0.05
         
     return max(0.01, min(0.99, prob_final)), p1_wins, p2_wins
+
+def get_gemini_analysis(match_str, p_apostado, p_oponente, prob_apostado, ev, cuota):
+    """Llama a la API de Gemini de forma segura para obtener una auditoría de la apuesta."""
+    try:
+        api_key = st.secrets["GEMINI_API_KEY"]
+    except:
+        api_key = os.environ.get("GEMINI_API_KEY")
+        
+    if not api_key:
+        return "⚠️ Error: No se encontró GEMINI_API_KEY en los Secrets de Streamlit."
+    
+    try:
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        prompt = f"Actúa como un experto en apuestas deportivas de tenis de mesa (Czech Liga Pro). Analiza este partido: {match_str}. Mi modelo cuantitativo le da a {p_apostado} (al que voy a apostar contra {p_oponente}) una probabilidad de ganar del {prob_apostado*100:.1f}% con un Valor Esperado (EV) de {ev:.2f} a cuota {cuota}. Dame una advertencia MUY BREVE (máximo 3 líneas) sobre riesgos psicológicos, de fatiga o de dinámica de juego que el algoritmo matemático podría no estar viendo. Sé directo."
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error conectando a la IA: {e}"
 
 # ─── BARRA LATERAL (ASISTENTE STAKE + COP) ───
 st.sidebar.markdown("## 🎯 Asistente STAKE (Celular)")
@@ -477,6 +498,13 @@ with tab_pnl:
                         st.info(f"👍 Apuesta decente. Probabilidad: **{prob_apostado*100:.1f}%** | EV: {ev:.2f}")
                     else:
                         st.warning(f"⚠️ Alto Riesgo. Probabilidad baja (**{prob_apostado*100:.1f}%**). ¿Estás seguro?")
+                        
+                    if st.button("🤖 Auditoría de IA (Gemini)", use_container_width=True):
+                        with st.spinner("Consultando al oráculo..."):
+                            ia_target = p_home if apostado_a == p_home else p_away
+                            ia_oponente = p_away if apostado_a == p_home else p_home
+                            analisis_ia = get_gemini_analysis(selected_match, ia_target, ia_oponente, prob_apostado, ev, n_cuota)
+                            st.info(f"**Veredicto del Agente IA:**\n{analisis_ia}")
                 
                 if st.button("💾 Guardar Apuesta en el Tracker", type="primary", use_container_width=True):
                     save_bet(selected_match, apostado_a, n_cuota, n_stake, ev)
