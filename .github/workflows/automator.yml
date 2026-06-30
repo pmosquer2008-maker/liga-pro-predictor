@@ -1,4 +1,7 @@
-name: Strike Engine Automator
+- name: Install dependencies
+        run: |
+          pip install pandas requests unidecode playwright
+          playwright install chromium
 
 on:
   schedule:
