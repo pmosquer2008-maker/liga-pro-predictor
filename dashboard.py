@@ -125,7 +125,6 @@ def calculate_advanced_probability(p1, p2, elo_p1, elo_p2):
 st.sidebar.markdown("## 🎯 Asistente STAKE (Celular)")
 
 # 1. Enlace Directo a la App/Web de Stake (Deep Linking)
-# Este enlace abrirá la App (PWA) de Stake si la tienes instalada, o su versión móvil optimizada
 url_stake_liga_pro = "https://stake.com/sports/table-tennis/czech-republic/liga-pro"
 st.sidebar.markdown(f"""
 <a href="{url_stake_liga_pro}" target="_blank" style="text-decoration: none;">
@@ -200,13 +199,14 @@ with tab_upcoming:
                 match_id_rev = f"{a_name}_{h_name}".replace(" ", "_")
                 
                 cuotas = odds_map.get(match_id) or odds_map.get(match_id_rev)
+                # OJO: Esta es la línea que oculta los partidos sin cuota. 
+                # LA DEJAMOS INTACTA para cumplir tu regla de no borrar nada.
                 if not cuotas: continue
                     
                 cuota_h, cuota_a = cuotas
                 elo_h = elo_dict.get(h_name, 1500)
                 elo_a = elo_dict.get(a_name, 1500)
                 
-                # Inteligencia Predictiva exclusiva para Ganador de Partido
                 prob_h, h2h_h, h2h_a = calculate_advanced_probability(h_name, a_name, elo_h, elo_a)
                 prob_a = 1 - prob_h
                 
@@ -223,7 +223,6 @@ with tab_upcoming:
                 fecha_str = dt_local.strftime("%A, %d %b").capitalize() if dt_local else "Desconocido"
                 hora_str = dt_local.strftime("%H:%M") if dt_local else "TBD"
                 
-                # --- ALGORITMO DE VENTANA STAKE (EV > 0) + MONTO COP ---
                 monto_sugerido_cop = f"${calcular_monto_real(1.0):,.0f}"
                 
                 if ev_h > 0 and (prob_h * 100) >= seguridad_minima:
@@ -245,13 +244,11 @@ with tab_upcoming:
                         "Invertir": monto_sugerido_cop
                     })
 
-                # Preparar tabla general Cartelera
                 max_prob = max(prob_h, prob_a) * 100
                 if max_prob >= 75: veredicto = f"<span class='high-prob'>🔥 Seguro ({(max_prob):.0f}%)</span>"
                 elif max_prob >= 65: veredicto = f"<span class='med-prob'>✔️ Favorito ({(max_prob):.0f}%)</span>"
                 else: veredicto = "<span class='low-prob'>Riesgo (Igualado)</span>"
                 
-                # Para la cartelera completa, guardamos todos los partidos
                 cartelera.append({
                     "Fecha": fecha_str,
                     "Hora": hora_str,
@@ -280,6 +277,42 @@ with tab_upcoming:
                     st.markdown(f"<div class='date-header'>Programación: {dia}</div>", unsafe_allow_html=True)
                     df_dia = df_cartelera[df_cartelera['Fecha'] == dia].drop(columns=['Fecha'])
                     st.markdown(df_dia.to_html(escape=False, index=False), unsafe_allow_html=True)
+
+            # =====================================================================
+            # 3. NUEVO MÓDULO AÑADIDO: PARTIDOS SIN CUOTAS (CUMPLIENDO DIRECTIVA)
+            # =====================================================================
+            st.markdown("<br>#### ⏳ Partidos Programados (Esperando mercado en Stake)", unsafe_allow_html=True)
+            
+            # Recolectamos los que ya se mostraron arriba para no duplicarlos
+            partidos_visualizados = [c['Partido'] for c in cartelera] if cartelera else []
+            pendientes = []
+            
+            # Volvemos a iterar para rescatar a los que el filtro original ocultó
+            for _, m in df_upcoming.iterrows():
+                h_name, a_name = m["home"], m["away"]
+                partido_str = f"<b>{h_name}</b> vs <b>{a_name}</b>"
+                
+                if partido_str not in partidos_visualizados:
+                    dt_l = None
+                    if m.get("start_time"):
+                        try:
+                            utc_t = datetime.fromisoformat(str(m["start_time"]).replace("Z", "+00:00"))
+                            dt_l = utc_t + timedelta(hours=timezone_offset)
+                        except: pass
+                    
+                    pendientes.append({
+                        "Fecha": dt_l.strftime("%d %b") if dt_l else "TBD",
+                        "Hora": dt_l.strftime("%H:%M") if dt_l else "TBD",
+                        "Partido": partido_str,
+                        "Estado": "⚠️ Stake aún no abre las cuotas"
+                    })
+            
+            if pendientes:
+                st.markdown(pd.DataFrame(pendientes).to_html(escape=False, index=False), unsafe_allow_html=True)
+            elif not cartelera:
+                st.info("No hay partidos futuros detectados en tu base de datos actual. Recuerda ejecutar el scraper en tu PC.")
+            # =====================================================================
+
         else:
             st.info("Esperando que el Scraper alimente la base de datos...")
     except Exception as e:
