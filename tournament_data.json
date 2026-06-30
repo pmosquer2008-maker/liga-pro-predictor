@@ -1,0 +1,6155 @@
+{
+  "scraped_at": "2026-06-30T13:29:41.414979+00:00",
+  "tournament_id": "19039",
+  "season_id": "96742",
+  "total_finished": 126,
+  "total_upcoming": 80,
+  "elo_ratings": {
+    "Fojt P.": 1499.318812665471,
+    "Parhomenko D.": 1454.6339225162474,
+    "Vitrovyj O.": 1561.6212450849991,
+    "Bruzek P.": 1510.4902964806574,
+    "Huk M.": 1521.716869327051,
+    "Ruzicka J.": 1467.4107136868165,
+    "Darin K.": 1437.1518719535936,
+    "Vedmoch M.": 1504.750962914844,
+    "Jan S.": 1465.4605031619183,
+    "Dolezal V.": 1501.3611447801377,
+    "Regner T.": 1473.8836207604616,
+    "Prikasky L.": 1543.3552150185021,
+    "Svacha O.": 1510.9221036081597,
+    "Jungman F.": 1550.6457416561375,
+    "Svechota V.": 1466.4782239611538,
+    "Grohsgott J.": 1513.6,
+    "Madle L.": 1505.467373208158,
+    "Barton D.": 1516.0,
+    "Sulava L.": 1470.6686628241935,
+    "Strnad J.": 1519.4990134817288,
+    "Petr P.": 1463.5385955327097,
+    "Polasek R.": 1500.0017984368048,
+    "Wawrosz P.": 1540.1761709485747,
+    "Martinak L.": 1535.2,
+    "Cernin T.": 1464.8,
+    "Revay R.": 1494.2493689768241,
+    "Vavrecka M.": 1494.3003416818326,
+    "Nohejl T.": 1438.5627922373899,
+    "Trinta M.": 1516.0,
+    "Havrda L.": 1464.932626791842,
+    "Kulhanek P.": 1516.0,
+    "Koch J.": 1549.456313375482,
+    "Jira J.": 1415.6929455630861,
+    "Simecek J.": 1496.8,
+    "Richard Skacelik": 1503.2,
+    "Zika T.": 1497.683293697148,
+    "Martin Biolek": 1518.8210377575574,
+    "Dousa T.": 1543.8290364997126,
+    "Stolfa J.": 1492.2150774695947,
+    "Opanasiuk D.": 1544.4774632865908,
+    "Postelt T.": 1468.736306793522,
+    "Zahradka M.": 1521.3658184128944,
+    "Skotnica M.": 1507.944623237519,
+    "Kratochvil M.": 1477.1286772807998,
+    "Zeman L.": 1509.0153078467524,
+    "Dousek T.": 1500.3789622424426,
+    "Grundel M.": 1502.8844723729533,
+    "Pavelka R.": 1484.736306793522,
+    "Ondrej Paril": 1483.116706302852,
+    "Nohejl V.": 1468.7510559854225,
+    "Radim Urbaniec": 1483.3145470646916,
+    "Kycelt J.": 1456.924768147117,
+    "Mecl Jr J.": 1486.4,
+    "Rose R.": 1513.6,
+    "Hudeczek R.": 1484.0,
+    "Pagac Z.": 1516.0,
+    "Kantor J.": 1513.6,
+    "Samuel Byrtus": 1486.4,
+    "Mares E.": 1520.8461539260177,
+    "Chalupa M.": 1486.4,
+    "Holub M.": 1513.6,
+    "Walek A.": 1484.0,
+    "Heczko D.": 1516.0,
+    "Havlicek V.": 1539.1112414124295,
+    "Vrba J.": 1545.7395556987055,
+    "Jaromir Cernik": 1472.299346991257,
+    "Toth J.": 1508.4009838299226,
+    "Banot P.": 1524.6567235478103,
+    "Petr Z.": 1493.6070261184477,
+    "Forman L.": 1500.2780591496685,
+    "Vavrecka D.": 1499.509258583122,
+    "Novotny L.": 1525.7875841337716,
+    "Kolenciak I.": 1467.4330340391452,
+    "Havrda C.": 1518.8095796824016,
+    "Serak P.": 1521.3952792956907,
+    "Palmi I.": 1549.7613372576272,
+    "Motak J.": 1432.9966013970818,
+    "Stary J.": 1513.4554617657411,
+    "Foltynek J.": 1514.2076701878564,
+    "Martinec L.": 1503.0343911574346
+  },
+  "player_stats": {
+    "Fojt P.": {
+      "wins": 2,
+      "losses": 2,
+      "sets_won": 7,
+      "sets_lost": 8,
+      "matches": 4
+    },
+    "Parhomenko D.": {
+      "wins": 2,
+      "losses": 6,
+      "sets_won": 15,
+      "sets_lost": 18,
+      "matches": 8
+    },
+    "Vitrovyj O.": {
+      "wins": 4,
+      "losses": 0,
+      "sets_won": 12,
+      "sets_lost": 4,
+      "matches": 4
+    },
+    "Bruzek P.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 6,
+      "sets_lost": 6,
+      "matches": 3
+    },
+    "Huk M.": {
+      "wins": 5,
+      "losses": 3,
+      "sets_won": 17,
+      "sets_lost": 16,
+      "matches": 8
+    },
+    "Ruzicka J.": {
+      "wins": 2,
+      "losses": 5,
+      "sets_won": 14,
+      "sets_lost": 16,
+      "matches": 7
+    },
+    "Darin K.": {
+      "wins": 0,
+      "losses": 4,
+      "sets_won": 3,
+      "sets_lost": 12,
+      "matches": 4
+    },
+    "Vedmoch M.": {
+      "wins": 3,
+      "losses": 2,
+      "sets_won": 9,
+      "sets_lost": 10,
+      "matches": 5
+    },
+    "Jan S.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 1,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Dolezal V.": {
+      "wins": 3,
+      "losses": 3,
+      "sets_won": 11,
+      "sets_lost": 12,
+      "matches": 6
+    },
+    "Regner T.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 4,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Prikasky L.": {
+      "wins": 5,
+      "losses": 2,
+      "sets_won": 17,
+      "sets_lost": 12,
+      "matches": 7
+    },
+    "Svacha O.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 6,
+      "sets_lost": 6,
+      "matches": 3
+    },
+    "Jungman F.": {
+      "wins": 3,
+      "losses": 0,
+      "sets_won": 9,
+      "sets_lost": 2,
+      "matches": 3
+    },
+    "Svechota V.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 2,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Grohsgott J.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 2,
+      "matches": 1
+    },
+    "Madle L.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 5,
+      "sets_lost": 3,
+      "matches": 2
+    },
+    "Barton D.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 1,
+      "matches": 1
+    },
+    "Sulava L.": {
+      "wins": 1,
+      "losses": 3,
+      "sets_won": 5,
+      "sets_lost": 9,
+      "matches": 4
+    },
+    "Strnad J.": {
+      "wins": 5,
+      "losses": 3,
+      "sets_won": 17,
+      "sets_lost": 9,
+      "matches": 8
+    },
+    "Petr P.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 0,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Polasek R.": {
+      "wins": 2,
+      "losses": 2,
+      "sets_won": 9,
+      "sets_lost": 10,
+      "matches": 4
+    },
+    "Wawrosz P.": {
+      "wins": 5,
+      "losses": 2,
+      "sets_won": 18,
+      "sets_lost": 14,
+      "matches": 7
+    },
+    "Martinak L.": {
+      "wins": 2,
+      "losses": 0,
+      "sets_won": 6,
+      "sets_lost": 1,
+      "matches": 2
+    },
+    "Cernin T.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 1,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Revay R.": {
+      "wins": 2,
+      "losses": 2,
+      "sets_won": 7,
+      "sets_lost": 9,
+      "matches": 4
+    },
+    "Vavrecka M.": {
+      "wins": 3,
+      "losses": 4,
+      "sets_won": 17,
+      "sets_lost": 15,
+      "matches": 7
+    },
+    "Nohejl T.": {
+      "wins": 0,
+      "losses": 4,
+      "sets_won": 3,
+      "sets_lost": 12,
+      "matches": 4
+    },
+    "Trinta M.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 1,
+      "matches": 1
+    },
+    "Havrda L.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 1,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Kulhanek P.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 1,
+      "matches": 1
+    },
+    "Koch J.": {
+      "wins": 5,
+      "losses": 1,
+      "sets_won": 15,
+      "sets_lost": 8,
+      "matches": 6
+    },
+    "Jira J.": {
+      "wins": 0,
+      "losses": 6,
+      "sets_won": 5,
+      "sets_lost": 18,
+      "matches": 6
+    },
+    "Simecek J.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 3,
+      "sets_lost": 4,
+      "matches": 2
+    },
+    "Richard Skacelik": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 4,
+      "sets_lost": 3,
+      "matches": 2
+    },
+    "Zika T.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 3,
+      "sets_lost": 4,
+      "matches": 2
+    },
+    "Martin Biolek": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 8,
+      "sets_lost": 5,
+      "matches": 3
+    },
+    "Dousa T.": {
+      "wins": 3,
+      "losses": 0,
+      "sets_won": 9,
+      "sets_lost": 4,
+      "matches": 3
+    },
+    "Stolfa J.": {
+      "wins": 1,
+      "losses": 2,
+      "sets_won": 6,
+      "sets_lost": 6,
+      "matches": 3
+    },
+    "Opanasiuk D.": {
+      "wins": 3,
+      "losses": 0,
+      "sets_won": 9,
+      "sets_lost": 3,
+      "matches": 3
+    },
+    "Postelt T.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 2,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Zahradka M.": {
+      "wins": 3,
+      "losses": 2,
+      "sets_won": 13,
+      "sets_lost": 9,
+      "matches": 5
+    },
+    "Skotnica M.": {
+      "wins": 4,
+      "losses": 3,
+      "sets_won": 15,
+      "sets_lost": 11,
+      "matches": 7
+    },
+    "Kratochvil M.": {
+      "wins": 1,
+      "losses": 2,
+      "sets_won": 3,
+      "sets_lost": 8,
+      "matches": 3
+    },
+    "Zeman L.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 6,
+      "sets_lost": 5,
+      "matches": 3
+    },
+    "Dousek T.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 5,
+      "sets_lost": 5,
+      "matches": 2
+    },
+    "Grundel M.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 4,
+      "sets_lost": 3,
+      "matches": 2
+    },
+    "Pavelka R.": {
+      "wins": 0,
+      "losses": 1,
+      "sets_won": 1,
+      "sets_lost": 3,
+      "matches": 1
+    },
+    "Ondrej Paril": {
+      "wins": 0,
+      "losses": 1,
+      "sets_won": 1,
+      "sets_lost": 3,
+      "matches": 1
+    },
+    "Nohejl V.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 2,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Radim Urbaniec": {
+      "wins": 2,
+      "losses": 4,
+      "sets_won": 11,
+      "sets_lost": 14,
+      "matches": 6
+    },
+    "Kycelt J.": {
+      "wins": 0,
+      "losses": 3,
+      "sets_won": 3,
+      "sets_lost": 9,
+      "matches": 3
+    },
+    "Mecl Jr J.": {
+      "wins": 0,
+      "losses": 1,
+      "sets_won": 2,
+      "sets_lost": 3,
+      "matches": 1
+    },
+    "Rose R.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 2,
+      "matches": 1
+    },
+    "Hudeczek R.": {
+      "wins": 0,
+      "losses": 1,
+      "sets_won": 1,
+      "sets_lost": 3,
+      "matches": 1
+    },
+    "Pagac Z.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 1,
+      "matches": 1
+    },
+    "Kantor J.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 2,
+      "matches": 1
+    },
+    "Samuel Byrtus": {
+      "wins": 0,
+      "losses": 1,
+      "sets_won": 2,
+      "sets_lost": 3,
+      "matches": 1
+    },
+    "Mares E.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 0,
+      "matches": 1
+    },
+    "Chalupa M.": {
+      "wins": 0,
+      "losses": 1,
+      "sets_won": 2,
+      "sets_lost": 3,
+      "matches": 1
+    },
+    "Holub M.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 2,
+      "matches": 1
+    },
+    "Walek A.": {
+      "wins": 0,
+      "losses": 1,
+      "sets_won": 1,
+      "sets_lost": 3,
+      "matches": 1
+    },
+    "Heczko D.": {
+      "wins": 1,
+      "losses": 0,
+      "sets_won": 3,
+      "sets_lost": 1,
+      "matches": 1
+    },
+    "Havlicek V.": {
+      "wins": 3,
+      "losses": 0,
+      "sets_won": 9,
+      "sets_lost": 4,
+      "matches": 3
+    },
+    "Vrba J.": {
+      "wins": 3,
+      "losses": 0,
+      "sets_won": 9,
+      "sets_lost": 3,
+      "matches": 3
+    },
+    "Jaromir Cernik": {
+      "wins": 2,
+      "losses": 4,
+      "sets_won": 10,
+      "sets_lost": 14,
+      "matches": 6
+    },
+    "Toth J.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 6,
+      "sets_lost": 6,
+      "matches": 3
+    },
+    "Banot P.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 7,
+      "sets_lost": 3,
+      "matches": 3
+    },
+    "Petr Z.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 3,
+      "sets_lost": 4,
+      "matches": 2
+    },
+    "Forman L.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 4,
+      "sets_lost": 4,
+      "matches": 2
+    },
+    "Vavrecka D.": {
+      "wins": 1,
+      "losses": 1,
+      "sets_won": 3,
+      "sets_lost": 3,
+      "matches": 2
+    },
+    "Novotny L.": {
+      "wins": 3,
+      "losses": 2,
+      "sets_won": 10,
+      "sets_lost": 8,
+      "matches": 5
+    },
+    "Kolenciak I.": {
+      "wins": 0,
+      "losses": 2,
+      "sets_won": 2,
+      "sets_lost": 6,
+      "matches": 2
+    },
+    "Havrda C.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 8,
+      "sets_lost": 5,
+      "matches": 3
+    },
+    "Serak P.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 8,
+      "sets_lost": 3,
+      "matches": 3
+    },
+    "Palmi I.": {
+      "wins": 3,
+      "losses": 0,
+      "sets_won": 9,
+      "sets_lost": 2,
+      "matches": 3
+    },
+    "Motak J.": {
+      "wins": 0,
+      "losses": 4,
+      "sets_won": 2,
+      "sets_lost": 12,
+      "matches": 4
+    },
+    "Stary J.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 7,
+      "sets_lost": 6,
+      "matches": 3
+    },
+    "Foltynek J.": {
+      "wins": 2,
+      "losses": 1,
+      "sets_won": 6,
+      "sets_lost": 4,
+      "matches": 3
+    },
+    "Martinec L.": {
+      "wins": 2,
+      "losses": 2,
+      "sets_won": 7,
+      "sets_lost": 6,
+      "matches": 4
+    }
+  },
+  "finished": [
+    {
+      "id": 16414252,
+      "status": "finalizado",
+      "start_time": "2026-06-30T13:00:00+00:00",
+      "home": "Martinec L.",
+      "away": "Motak J.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Martinec L.",
+      "slug": "martinec-motak"
+    },
+    {
+      "id": 16414251,
+      "status": "finalizado",
+      "start_time": "2026-06-30T13:00:00+00:00",
+      "home": "Koch J.",
+      "away": "Jira J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Koch J.",
+      "slug": "koch-jira"
+    },
+    {
+      "id": 16414254,
+      "status": "finalizado",
+      "start_time": "2026-06-30T13:00:00+00:00",
+      "home": "Skotnica M.",
+      "away": "Radim Urbaniec",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        }
+      ],
+      "winner": "Radim Urbaniec",
+      "slug": "skotnica-radim-urbaniec"
+    },
+    {
+      "id": 16414253,
+      "status": "finalizado",
+      "start_time": "2026-06-30T13:00:00+00:00",
+      "home": "Ruzicka J.",
+      "away": "Huk M.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 5,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Huk M.",
+      "slug": "ruzicka-huk"
+    },
+    {
+      "id": 16414246,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:30:00+00:00",
+      "home": "Motak J.",
+      "away": "Martinec L.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 14
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Martinec L.",
+      "slug": "martinec-motak"
+    },
+    {
+      "id": 16414245,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:30:00+00:00",
+      "home": "Koch J.",
+      "away": "Jira J.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Koch J.",
+      "slug": "koch-jira"
+    },
+    {
+      "id": 16414247,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:30:00+00:00",
+      "home": "Prikasky L.",
+      "away": "Zahradka M.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 2,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 5,
+          "home": 14,
+          "away": 12
+        }
+      ],
+      "winner": "Prikasky L.",
+      "slug": "prikasky-zahradka"
+    },
+    {
+      "id": 16414248,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:30:00+00:00",
+      "home": "Strnad J.",
+      "away": "Jaromir Cernik",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 14,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 4,
+          "away": 11
+        }
+      ],
+      "winner": "Jaromir Cernik",
+      "slug": "jaromir-cernik-strnad"
+    },
+    {
+      "id": 16414249,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:30:00+00:00",
+      "home": "Radim Urbaniec",
+      "away": "Vavrecka M.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 14,
+          "away": 16
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Radim Urbaniec",
+      "slug": "vavrecka-radim-urbaniec"
+    },
+    {
+      "id": 16414242,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:00:00+00:00",
+      "home": "Palmi I.",
+      "away": "Foltynek J.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Palmi I.",
+      "slug": "palmi-foltynek"
+    },
+    {
+      "id": 16414244,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:00:00+00:00",
+      "home": "Skotnica M.",
+      "away": "Wawrosz P.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 3,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 4,
+          "home": 5,
+          "away": 11
+        }
+      ],
+      "winner": "Wawrosz P.",
+      "slug": "skotnica-wawrosz"
+    },
+    {
+      "id": 16414243,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:00:00+00:00",
+      "home": "Serak P.",
+      "away": "Stary J.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 2,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 2
+        },
+        {
+          "set": 5,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Stary J.",
+      "slug": "stary-serak"
+    },
+    {
+      "id": 16414240,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:00:00+00:00",
+      "home": "Havrda C.",
+      "away": "Novotny L.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 2,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 4,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 7,
+          "away": 11
+        }
+      ],
+      "winner": "Novotny L.",
+      "slug": "novotny-havrda"
+    },
+    {
+      "id": 16414241,
+      "status": "finalizado",
+      "start_time": "2026-06-30T12:00:00+00:00",
+      "home": "Huk M.",
+      "away": "Ruzicka J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Huk M.",
+      "slug": "ruzicka-huk"
+    },
+    {
+      "id": 16414237,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:30:00+00:00",
+      "home": "Martinec L.",
+      "away": "Palmi I.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Palmi I.",
+      "slug": "martinec-palmi"
+    },
+    {
+      "id": 16414236,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:30:00+00:00",
+      "home": "Jira J.",
+      "away": "Serak P.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        }
+      ],
+      "winner": "Serak P.",
+      "slug": "jira-serak"
+    },
+    {
+      "id": 16414235,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:30:00+00:00",
+      "home": "Jaromir Cernik",
+      "away": "Havrda C.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 13
+        }
+      ],
+      "winner": "Havrda C.",
+      "slug": "jaromir-cernik-havrda"
+    },
+    {
+      "id": 16414238,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:30:00+00:00",
+      "home": "Vavrecka M.",
+      "away": "Skotnica M.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 16,
+          "away": 14
+        },
+        {
+          "set": 3,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Vavrecka M.",
+      "slug": "skotnica-vavrecka"
+    },
+    {
+      "id": 16414239,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:30:00+00:00",
+      "home": "Zahradka M.",
+      "away": "Huk M.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 3,
+          "home": 14,
+          "away": 12
+        }
+      ],
+      "winner": "Zahradka M.",
+      "slug": "zahradka-huk"
+    },
+    {
+      "id": 16414231,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:00:00+00:00",
+      "home": "Motak J.",
+      "away": "Foltynek J.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 5,
+          "away": 11
+        }
+      ],
+      "winner": "Foltynek J.",
+      "slug": "foltynek-motak"
+    },
+    {
+      "id": 16414230,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:00:00+00:00",
+      "home": "Koch J.",
+      "away": "Stary J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 2,
+          "home": 14,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Koch J.",
+      "slug": "stary-koch"
+    },
+    {
+      "id": 16414233,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:00:00+00:00",
+      "home": "Strnad J.",
+      "away": "Novotny L.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        }
+      ],
+      "winner": "Novotny L.",
+      "slug": "novotny-strnad"
+    },
+    {
+      "id": 16414234,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:00:00+00:00",
+      "home": "Radim Urbaniec",
+      "away": "Wawrosz P.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 2,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 4,
+          "away": 11
+        }
+      ],
+      "winner": "Wawrosz P.",
+      "slug": "wawrosz-radim-urbaniec"
+    },
+    {
+      "id": 16414232,
+      "status": "finalizado",
+      "start_time": "2026-06-30T11:00:00+00:00",
+      "home": "Prikasky L.",
+      "away": "Ruzicka J.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Ruzicka J.",
+      "slug": "prikasky-ruzicka"
+    },
+    {
+      "id": 16414225,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:30:00+00:00",
+      "home": "Foltynek J.",
+      "away": "Martinec L.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 15,
+          "away": 13
+        },
+        {
+          "set": 2,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Foltynek J.",
+      "slug": "martinec-foltynek"
+    },
+    {
+      "id": 16414228,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:30:00+00:00",
+      "home": "Stary J.",
+      "away": "Jira J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 2
+        }
+      ],
+      "winner": "Stary J.",
+      "slug": "stary-jira"
+    },
+    {
+      "id": 16414226,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:30:00+00:00",
+      "home": "Novotny L.",
+      "away": "Jaromir Cernik",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Novotny L.",
+      "slug": "novotny-jaromir-cernik"
+    },
+    {
+      "id": 16414229,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:30:00+00:00",
+      "home": "Wawrosz P.",
+      "away": "Vavrecka M.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 5,
+          "home": 14,
+          "away": 12
+        }
+      ],
+      "winner": "Wawrosz P.",
+      "slug": "vavrecka-wawrosz"
+    },
+    {
+      "id": 16414227,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:30:00+00:00",
+      "home": "Ruzicka J.",
+      "away": "Zahradka M.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Zahradka M.",
+      "slug": "ruzicka-zahradka"
+    },
+    {
+      "id": 16414222,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:00:00+00:00",
+      "home": "Palmi I.",
+      "away": "Motak J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 12,
+          "away": 10
+        }
+      ],
+      "winner": "Palmi I.",
+      "slug": "palmi-motak"
+    },
+    {
+      "id": 16414223,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:00:00+00:00",
+      "home": "Serak P.",
+      "away": "Koch J.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 3,
+          "home": 15,
+          "away": 13
+        }
+      ],
+      "winner": "Serak P.",
+      "slug": "koch-serak"
+    },
+    {
+      "id": 16414220,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:00:00+00:00",
+      "home": "Havrda C.",
+      "away": "Strnad J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Havrda C.",
+      "slug": "havrda-strnad"
+    },
+    {
+      "id": 16414224,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:00:00+00:00",
+      "home": "Skotnica M.",
+      "away": "Radim Urbaniec",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Skotnica M.",
+      "slug": "skotnica-radim-urbaniec"
+    },
+    {
+      "id": 16414221,
+      "status": "finalizado",
+      "start_time": "2026-06-30T10:00:00+00:00",
+      "home": "Huk M.",
+      "away": "Prikasky L.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Prikasky L.",
+      "slug": "prikasky-huk"
+    },
+    {
+      "id": 16414218,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:30:00+00:00",
+      "home": "Toth J.",
+      "away": "Banot P.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        }
+      ],
+      "winner": "Banot P.",
+      "slug": "banot-toth"
+    },
+    {
+      "id": 16414219,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:30:00+00:00",
+      "home": "Vrba J.",
+      "away": "Novotny L.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 2,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 4
+        }
+      ],
+      "winner": "Vrba J.",
+      "slug": "novotny-vrba"
+    },
+    {
+      "id": 16414217,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:30:00+00:00",
+      "home": "Polasek R.",
+      "away": "Wawrosz P.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 3
+        }
+      ],
+      "winner": "Polasek R.",
+      "slug": "wawrosz-polasek"
+    },
+    {
+      "id": 16414216,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:30:00+00:00",
+      "home": "Nohejl T.",
+      "away": "Strnad J.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Strnad J.",
+      "slug": "nohejl-strnad"
+    },
+    {
+      "id": 16414215,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:30:00+00:00",
+      "home": "Havlicek V.",
+      "away": "Darin K.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Havlicek V.",
+      "slug": "darin-havlicek"
+    },
+    {
+      "id": 16414214,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:00:00+00:00",
+      "home": "Vavrecka D.",
+      "away": "Kolenciak I.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Vavrecka D.",
+      "slug": "kolenciak-vavrecka"
+    },
+    {
+      "id": 16414210,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:00:00+00:00",
+      "home": "Jaromir Cernik",
+      "away": "Forman L.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 3,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 14,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Forman L.",
+      "slug": "forman-jaromir-cernik"
+    },
+    {
+      "id": 16414211,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:00:00+00:00",
+      "home": "Parhomenko D.",
+      "away": "Petr Z.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 10,
+          "away": 12
+        }
+      ],
+      "winner": "Petr Z.",
+      "slug": "petr-parhomenko"
+    },
+    {
+      "id": 16414213,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:00:00+00:00",
+      "home": "Sulava L.",
+      "away": "Dolezal V.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Dolezal V.",
+      "slug": "dolezal-sulava"
+    },
+    {
+      "id": 16414212,
+      "status": "finalizado",
+      "start_time": "2026-06-30T09:00:00+00:00",
+      "home": "Revay R.",
+      "away": "Vavrecka M.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Vavrecka M.",
+      "slug": "vavrecka-revay"
+    },
+    {
+      "id": 16414206,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:30:00+00:00",
+      "home": "Kolenciak I.",
+      "away": "Toth J.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 4,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 5,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Toth J.",
+      "slug": "kolenciak-toth"
+    },
+    {
+      "id": 16414207,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:30:00+00:00",
+      "home": "Novotny L.",
+      "away": "Vrba J.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 14
+        },
+        {
+          "set": 3,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Vrba J.",
+      "slug": "novotny-vrba"
+    },
+    {
+      "id": 16414205,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:30:00+00:00",
+      "home": "Darin K.",
+      "away": "Havlicek V.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        }
+      ],
+      "winner": "Havlicek V.",
+      "slug": "darin-havlicek"
+    },
+    {
+      "id": 16414208,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:30:00+00:00",
+      "home": "Sulava L.",
+      "away": "Strnad J.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Strnad J.",
+      "slug": "strnad-sulava"
+    },
+    {
+      "id": 16414209,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:30:00+00:00",
+      "home": "Wawrosz P.",
+      "away": "Vavrecka M.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 4
+        }
+      ],
+      "winner": "Wawrosz P.",
+      "slug": "vavrecka-wawrosz"
+    },
+    {
+      "id": 16414200,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:00:00+00:00",
+      "home": "Banot P.",
+      "away": "Vavrecka D.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 3,
+          "home": 12,
+          "away": 10
+        }
+      ],
+      "winner": "Banot P.",
+      "slug": "banot-vavrecka"
+    },
+    {
+      "id": 16414204,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:00:00+00:00",
+      "home": "Polasek R.",
+      "away": "Revay R.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 14,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 5,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Revay R.",
+      "slug": "polasek-revay"
+    },
+    {
+      "id": 16414202,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:00:00+00:00",
+      "home": "Dolezal V.",
+      "away": "Nohejl T.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 1
+        }
+      ],
+      "winner": "Dolezal V.",
+      "slug": "dolezal-nohejl"
+    },
+    {
+      "id": 16414201,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:00:00+00:00",
+      "home": "Jaromir Cernik",
+      "away": "Forman L.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 14,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 12,
+          "away": 10
+        }
+      ],
+      "winner": "Jaromir Cernik",
+      "slug": "forman-jaromir-cernik"
+    },
+    {
+      "id": 16414203,
+      "status": "finalizado",
+      "start_time": "2026-06-30T08:00:00+00:00",
+      "home": "Parhomenko D.",
+      "away": "Petr Z.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Parhomenko D.",
+      "slug": "petr-parhomenko"
+    },
+    {
+      "id": 16414197,
+      "status": "finalizado",
+      "start_time": "2026-06-30T07:30:00+00:00",
+      "home": "Toth J.",
+      "away": "Banot P.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Toth J.",
+      "slug": "banot-toth"
+    },
+    {
+      "id": 16414199,
+      "status": "finalizado",
+      "start_time": "2026-06-30T07:30:00+00:00",
+      "home": "Vrba J.",
+      "away": "Jaromir Cernik",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 2
+        },
+        {
+          "set": 2,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Vrba J.",
+      "slug": "vrba-jaromir-cernik"
+    },
+    {
+      "id": 16414195,
+      "status": "finalizado",
+      "start_time": "2026-06-30T07:30:00+00:00",
+      "home": "Havlicek V.",
+      "away": "Parhomenko D.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Havlicek V.",
+      "slug": "parhomenko-havlicek"
+    },
+    {
+      "id": 16414196,
+      "status": "finalizado",
+      "start_time": "2026-06-30T07:30:00+00:00",
+      "home": "Strnad J.",
+      "away": "Dolezal V.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 3
+        }
+      ],
+      "winner": "Strnad J.",
+      "slug": "dolezal-strnad"
+    },
+    {
+      "id": 16414198,
+      "status": "finalizado",
+      "start_time": "2026-06-30T07:30:00+00:00",
+      "home": "Vavrecka M.",
+      "away": "Polasek R.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 5,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Polasek R.",
+      "slug": "vavrecka-polasek"
+    },
+    {
+      "id": 16407302,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:30:00+00:00",
+      "home": "Walek A.",
+      "away": "Heczko D.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 12,
+          "away": 14
+        }
+      ],
+      "winner": "Heczko D.",
+      "slug": "walek-heczko"
+    },
+    {
+      "id": 16407299,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:30:00+00:00",
+      "home": "Chalupa M.",
+      "away": "Holub M.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Holub M.",
+      "slug": "chalupa-holub"
+    },
+    {
+      "id": 16407300,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:30:00+00:00",
+      "home": "Dousa T.",
+      "away": "Stolfa J.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 5,
+          "home": 14,
+          "away": 12
+        }
+      ],
+      "winner": "Dousa T.",
+      "slug": "dousa-stolfa"
+    },
+    {
+      "id": 16407303,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:30:00+00:00",
+      "home": "Zeman L.",
+      "away": "Mares E.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Mares E.",
+      "slug": "zeman-mares"
+    },
+    {
+      "id": 16407295,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:00:00+00:00",
+      "home": "Kantor J.",
+      "away": "Samuel Byrtus",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 2
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Kantor J.",
+      "slug": "kantor-samuel-byrtus"
+    },
+    {
+      "id": 16407297,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:00:00+00:00",
+      "home": "Opanasiuk D.",
+      "away": "Kycelt J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Opanasiuk D.",
+      "slug": "opanasiuk-kycelt"
+    },
+    {
+      "id": 16407294,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:00:00+00:00",
+      "home": "Hudeczek R.",
+      "away": "Pagac Z.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 4,
+          "home": 10,
+          "away": 12
+        }
+      ],
+      "winner": "Pagac Z.",
+      "slug": "pagac-hudeczek"
+    },
+    {
+      "id": 16407296,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:00:00+00:00",
+      "home": "Mecl Jr J.",
+      "away": "Rose R.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 4,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 13
+        }
+      ],
+      "winner": "Rose R.",
+      "slug": "mecl-jr-rose"
+    },
+    {
+      "id": 16407298,
+      "status": "finalizado",
+      "start_time": "2026-06-29T18:00:00+00:00",
+      "home": "Vedmoch M.",
+      "away": "Parhomenko D.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 14,
+          "away": 16
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Vedmoch M.",
+      "slug": "parhomenko-vedmoch"
+    },
+    {
+      "id": 16410777,
+      "status": "finalizado",
+      "start_time": "2026-06-29T17:30:00+00:00",
+      "home": "Skotnica M.",
+      "away": "Grundel M.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Skotnica M.",
+      "slug": "grundel-skotnica"
+    },
+    {
+      "id": 16410776,
+      "status": "finalizado",
+      "start_time": "2026-06-29T17:30:00+00:00",
+      "home": "Dousek T.",
+      "away": "Martin Biolek",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 4,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Martin Biolek",
+      "slug": "dousek-martin-biolek"
+    },
+    {
+      "id": 16410775,
+      "status": "finalizado",
+      "start_time": "2026-06-29T17:00:00+00:00",
+      "home": "Radim Urbaniec",
+      "away": "Kratochvil M.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 3,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 10,
+          "away": 12
+        }
+      ],
+      "winner": "Kratochvil M.",
+      "slug": "radim-urbaniec-kratochvil"
+    },
+    {
+      "id": 16410774,
+      "status": "finalizado",
+      "start_time": "2026-06-29T17:00:00+00:00",
+      "home": "Kycelt J.",
+      "away": "Zeman L.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 12,
+          "away": 14
+        }
+      ],
+      "winner": "Zeman L.",
+      "slug": "kycelt-zeman"
+    },
+    {
+      "id": 16410773,
+      "status": "finalizado",
+      "start_time": "2026-06-29T17:00:00+00:00",
+      "home": "Huk M.",
+      "away": "Nohejl V.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 12,
+          "away": 14
+        },
+        {
+          "set": 2,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Huk M.",
+      "slug": "nohejl-huk"
+    },
+    {
+      "id": 16407288,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:30:00+00:00",
+      "home": "Kycelt J.",
+      "away": "Opanasiuk D.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Opanasiuk D.",
+      "slug": "opanasiuk-kycelt"
+    },
+    {
+      "id": 16407293,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:30:00+00:00",
+      "home": "Radim Urbaniec",
+      "away": "Skotnica M.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 2,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Skotnica M.",
+      "slug": "skotnica-radim-urbaniec"
+    },
+    {
+      "id": 16407290,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:30:00+00:00",
+      "home": "Nohejl V.",
+      "away": "Zahradka M.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 2,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Zahradka M.",
+      "slug": "nohejl-zahradka"
+    },
+    {
+      "id": 16407291,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:30:00+00:00",
+      "home": "Ondrej Paril",
+      "away": "Zika T.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 3,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 3,
+          "away": 11
+        }
+      ],
+      "winner": "Zika T.",
+      "slug": "ondrej-paril-zika"
+    },
+    {
+      "id": 16407292,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:30:00+00:00",
+      "home": "Pavelka R.",
+      "away": "Dousa T.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Dousa T.",
+      "slug": "dousa-pavelka"
+    },
+    {
+      "id": 16407284,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:00:00+00:00",
+      "home": "Kratochvil M.",
+      "away": "Grundel M.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 5,
+          "away": 11
+        }
+      ],
+      "winner": "Grundel M.",
+      "slug": "grundel-kratochvil"
+    },
+    {
+      "id": 16407283,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:00:00+00:00",
+      "home": "Martin Biolek",
+      "away": "Dousek T.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 5,
+          "away": 11
+        }
+      ],
+      "winner": "Dousek T.",
+      "slug": "dousek-martin-biolek"
+    },
+    {
+      "id": 16407287,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:00:00+00:00",
+      "home": "Stolfa J.",
+      "away": "Vedmoch M.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Stolfa J.",
+      "slug": "vedmoch-stolfa"
+    },
+    {
+      "id": 16407285,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:00:00+00:00",
+      "home": "Postelt T.",
+      "away": "Zeman L.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Zeman L.",
+      "slug": "postelt-zeman"
+    },
+    {
+      "id": 16407286,
+      "status": "finalizado",
+      "start_time": "2026-06-29T16:00:00+00:00",
+      "home": "Prikasky L.",
+      "away": "Huk M.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Prikasky L.",
+      "slug": "prikasky-huk"
+    },
+    {
+      "id": 16407280,
+      "status": "finalizado",
+      "start_time": "2026-06-29T15:30:00+00:00",
+      "home": "Skotnica M.",
+      "away": "Kratochvil M.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Skotnica M.",
+      "slug": "skotnica-kratochvil"
+    },
+    {
+      "id": 16407281,
+      "status": "finalizado",
+      "start_time": "2026-06-29T15:30:00+00:00",
+      "home": "Zahradka M.",
+      "away": "Prikasky L.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 3,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 5,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Prikasky L.",
+      "slug": "prikasky-zahradka"
+    },
+    {
+      "id": 16407279,
+      "status": "finalizado",
+      "start_time": "2026-06-29T15:30:00+00:00",
+      "home": "Opanasiuk D.",
+      "away": "Postelt T.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Opanasiuk D.",
+      "slug": "opanasiuk-postelt"
+    },
+    {
+      "id": 16407278,
+      "status": "finalizado",
+      "start_time": "2026-06-29T15:30:00+00:00",
+      "home": "Dousa T.",
+      "away": "Stolfa J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Dousa T.",
+      "slug": "dousa-stolfa"
+    },
+    {
+      "id": 16407282,
+      "status": "finalizado",
+      "start_time": "2026-06-29T15:30:00+00:00",
+      "home": "Zika T.",
+      "away": "Martin Biolek",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Martin Biolek",
+      "slug": "martin-biolek-zika"
+    },
+    {
+      "id": 16407218,
+      "status": "finalizado",
+      "start_time": "2026-06-29T07:30:00+00:00",
+      "home": "Richard Skacelik",
+      "away": "Martinak L.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 2,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 3,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 4,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Martinak L.",
+      "slug": "martinak-richard-skacelik"
+    },
+    {
+      "id": 16407216,
+      "status": "finalizado",
+      "start_time": "2026-06-29T07:30:00+00:00",
+      "home": "Jira J.",
+      "away": "Strnad J.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        }
+      ],
+      "winner": "Strnad J.",
+      "slug": "jira-strnad"
+    },
+    {
+      "id": 16407211,
+      "status": "finalizado",
+      "start_time": "2026-06-29T07:00:00+00:00",
+      "home": "Cernin T.",
+      "away": "Simecek J.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 5
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Simecek J.",
+      "slug": "cernin-simecek"
+    },
+    {
+      "id": 16407215,
+      "status": "finalizado",
+      "start_time": "2026-06-29T07:00:00+00:00",
+      "home": "Wawrosz P.",
+      "away": "Revay R.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Revay R.",
+      "slug": "wawrosz-revay"
+    },
+    {
+      "id": 16407213,
+      "status": "finalizado",
+      "start_time": "2026-06-29T07:00:00+00:00",
+      "home": "Petr P.",
+      "away": "Koch J.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Koch J.",
+      "slug": "koch-petr"
+    },
+    {
+      "id": 16407212,
+      "status": "finalizado",
+      "start_time": "2026-06-29T07:00:00+00:00",
+      "home": "Madle L.",
+      "away": "Havrda L.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 17,
+          "away": 15
+        },
+        {
+          "set": 3,
+          "home": 12,
+          "away": 10
+        }
+      ],
+      "winner": "Madle L.",
+      "slug": "havrda-madle"
+    },
+    {
+      "id": 16407214,
+      "status": "finalizado",
+      "start_time": "2026-06-29T07:00:00+00:00",
+      "home": "Sulava L.",
+      "away": "Nohejl T.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 4
+        }
+      ],
+      "winner": "Sulava L.",
+      "slug": "nohejl-sulava"
+    },
+    {
+      "id": 16407210,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:30:00+00:00",
+      "home": "Simecek J.",
+      "away": "Richard Skacelik",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 13
+        }
+      ],
+      "winner": "Richard Skacelik",
+      "slug": "simecek-richard-skacelik"
+    },
+    {
+      "id": 16407207,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:30:00+00:00",
+      "home": "Koch J.",
+      "away": "Jira J.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 12,
+          "away": 10
+        }
+      ],
+      "winner": "Koch J.",
+      "slug": "koch-jira"
+    },
+    {
+      "id": 16407206,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:30:00+00:00",
+      "home": "Havrda L.",
+      "away": "Kulhanek P.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 10,
+          "away": 12
+        }
+      ],
+      "winner": "Kulhanek P.",
+      "slug": "havrda-kulhanek"
+    },
+    {
+      "id": 16407208,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:30:00+00:00",
+      "home": "Nohejl T.",
+      "away": "Trinta M.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 13,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Trinta M.",
+      "slug": "trinta-nohejl"
+    },
+    {
+      "id": 16407209,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:30:00+00:00",
+      "home": "Revay R.",
+      "away": "Vavrecka M.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 3,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 4,
+          "home": 5,
+          "away": 11
+        }
+      ],
+      "winner": "Vavrecka M.",
+      "slug": "vavrecka-revay"
+    },
+    {
+      "id": 16407203,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:00:00+00:00",
+      "home": "Martinak L.",
+      "away": "Cernin T.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 1
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Martinak L.",
+      "slug": "cernin-martinak"
+    },
+    {
+      "id": 16407204,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:00:00+00:00",
+      "home": "Polasek R.",
+      "away": "Wawrosz P.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 2,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Wawrosz P.",
+      "slug": "wawrosz-polasek"
+    },
+    {
+      "id": 16407205,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:00:00+00:00",
+      "home": "Strnad J.",
+      "away": "Petr P.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 10
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Strnad J.",
+      "slug": "petr-strnad"
+    },
+    {
+      "id": 16407201,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:00:00+00:00",
+      "home": "Barton D.",
+      "away": "Sulava L.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        }
+      ],
+      "winner": "Barton D.",
+      "slug": "barton-sulava"
+    },
+    {
+      "id": 16407202,
+      "status": "finalizado",
+      "start_time": "2026-06-29T06:00:00+00:00",
+      "home": "Grohsgott J.",
+      "away": "Madle L.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 12,
+          "away": 10
+        }
+      ],
+      "winner": "Grohsgott J.",
+      "slug": "grohsgott-madle"
+    },
+    {
+      "id": 16408975,
+      "status": "finalizado",
+      "start_time": "2026-06-29T03:30:00+00:00",
+      "home": "Jungman F.",
+      "away": "Vedmoch M.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Jungman F.",
+      "slug": "jungman-vedmoch"
+    },
+    {
+      "id": 16408976,
+      "status": "finalizado",
+      "start_time": "2026-06-29T03:30:00+00:00",
+      "home": "Vitrovyj O.",
+      "away": "Dolezal V.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Vitrovyj O.",
+      "slug": "dolezal-vitrovyj"
+    },
+    {
+      "id": 16408973,
+      "status": "finalizado",
+      "start_time": "2026-06-29T03:00:00+00:00",
+      "home": "Fojt P.",
+      "away": "Parhomenko D.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Fojt P.",
+      "slug": "parhomenko-fojt"
+    },
+    {
+      "id": 16408974,
+      "status": "finalizado",
+      "start_time": "2026-06-29T03:00:00+00:00",
+      "home": "Ruzicka J.",
+      "away": "Svacha O.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 4,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Svacha O.",
+      "slug": "svacha-ruzicka"
+    },
+    {
+      "id": 16407198,
+      "status": "finalizado",
+      "start_time": "2026-06-29T02:30:00+00:00",
+      "home": "Fojt P.",
+      "away": "Jungman F.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 5,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        }
+      ],
+      "winner": "Jungman F.",
+      "slug": "jungman-fojt"
+    },
+    {
+      "id": 16407199,
+      "status": "finalizado",
+      "start_time": "2026-06-29T02:30:00+00:00",
+      "home": "Svechota V.",
+      "away": "Svacha O.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 5,
+          "home": 4,
+          "away": 11
+        }
+      ],
+      "winner": "Svacha O.",
+      "slug": "svechota-svacha"
+    },
+    {
+      "id": 16407200,
+      "status": "finalizado",
+      "start_time": "2026-06-29T02:30:00+00:00",
+      "home": "Vitrovyj O.",
+      "away": "Regner T.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 4,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 5,
+          "home": 13,
+          "away": 11
+        }
+      ],
+      "winner": "Vitrovyj O.",
+      "slug": "vitrovyj-regner"
+    },
+    {
+      "id": 16407194,
+      "status": "finalizado",
+      "start_time": "2026-06-29T02:00:00+00:00",
+      "home": "Bruzek P.",
+      "away": "Jan S.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 4,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 14,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 4
+        }
+      ],
+      "winner": "Bruzek P.",
+      "slug": "bruzek-jan"
+    },
+    {
+      "id": 16407195,
+      "status": "finalizado",
+      "start_time": "2026-06-29T02:00:00+00:00",
+      "home": "Parhomenko D.",
+      "away": "Darin K.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        }
+      ],
+      "winner": "Parhomenko D.",
+      "slug": "parhomenko-darin"
+    },
+    {
+      "id": 16407196,
+      "status": "finalizado",
+      "start_time": "2026-06-29T02:00:00+00:00",
+      "home": "Prikasky L.",
+      "away": "Huk M.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 8,
+          "away": 11
+        }
+      ],
+      "winner": "Huk M.",
+      "slug": "prikasky-huk"
+    },
+    {
+      "id": 16407191,
+      "status": "finalizado",
+      "start_time": "2026-06-29T01:30:00+00:00",
+      "home": "Dolezal V.",
+      "away": "Vitrovyj O.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 7
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 4,
+          "home": 15,
+          "away": 17
+        },
+        {
+          "set": 5,
+          "home": 9,
+          "away": 11
+        }
+      ],
+      "winner": "Vitrovyj O.",
+      "slug": "dolezal-vitrovyj"
+    },
+    {
+      "id": 16407193,
+      "status": "finalizado",
+      "start_time": "2026-06-29T01:30:00+00:00",
+      "home": "Vedmoch M.",
+      "away": "Fojt P.",
+      "sets": {
+        "home": 3,
+        "away": 1
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Vedmoch M.",
+      "slug": "vedmoch-fojt"
+    },
+    {
+      "id": 16407192,
+      "status": "finalizado",
+      "start_time": "2026-06-29T01:30:00+00:00",
+      "home": "Ruzicka J.",
+      "away": "Svechota V.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Ruzicka J.",
+      "slug": "svechota-ruzicka"
+    },
+    {
+      "id": 16407189,
+      "status": "finalizado",
+      "start_time": "2026-06-29T01:00:00+00:00",
+      "home": "Parhomenko D.",
+      "away": "Jungman F.",
+      "sets": {
+        "home": 2,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 13
+        },
+        {
+          "set": 3,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 13
+        }
+      ],
+      "winner": "Jungman F.",
+      "slug": "jungman-parhomenko"
+    },
+    {
+      "id": 16407190,
+      "status": "finalizado",
+      "start_time": "2026-06-29T01:00:00+00:00",
+      "home": "Prikasky L.",
+      "away": "Svacha O.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Prikasky L.",
+      "slug": "prikasky-svacha"
+    },
+    {
+      "id": 16407187,
+      "status": "finalizado",
+      "start_time": "2026-06-29T01:00:00+00:00",
+      "home": "Bruzek P.",
+      "away": "Regner T.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 3
+        },
+        {
+          "set": 2,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 5
+        }
+      ],
+      "winner": "Bruzek P.",
+      "slug": "bruzek-regner"
+    },
+    {
+      "id": 16407186,
+      "status": "finalizado",
+      "start_time": "2026-06-29T00:30:00+00:00",
+      "home": "Jan S.",
+      "away": "Dolezal V.",
+      "sets": {
+        "home": 0,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 12,
+          "away": 14
+        },
+        {
+          "set": 3,
+          "home": 6,
+          "away": 11
+        }
+      ],
+      "winner": "Dolezal V.",
+      "slug": "dolezal-jan"
+    },
+    {
+      "id": 16407184,
+      "status": "finalizado",
+      "start_time": "2026-06-29T00:30:00+00:00",
+      "home": "Darin K.",
+      "away": "Vedmoch M.",
+      "sets": {
+        "home": 1,
+        "away": 3
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 9,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 4,
+          "home": 5,
+          "away": 11
+        }
+      ],
+      "winner": "Vedmoch M.",
+      "slug": "darin-vedmoch"
+    },
+    {
+      "id": 16407185,
+      "status": "finalizado",
+      "start_time": "2026-06-29T00:30:00+00:00",
+      "home": "Huk M.",
+      "away": "Ruzicka J.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 7,
+          "away": 11
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 3,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 7
+        }
+      ],
+      "winner": "Huk M.",
+      "slug": "ruzicka-huk"
+    },
+    {
+      "id": 16402489,
+      "status": "finalizado",
+      "start_time": "2026-06-29T00:00:00+00:00",
+      "home": "Vitrovyj O.",
+      "away": "Bruzek P.",
+      "sets": {
+        "home": 3,
+        "away": 0
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 11,
+          "away": 8
+        },
+        {
+          "set": 2,
+          "home": 11,
+          "away": 4
+        },
+        {
+          "set": 3,
+          "home": 12,
+          "away": 10
+        }
+      ],
+      "winner": "Vitrovyj O.",
+      "slug": "bruzek-vitrovyj"
+    },
+    {
+      "id": 16402487,
+      "status": "finalizado",
+      "start_time": "2026-06-29T00:00:00+00:00",
+      "home": "Fojt P.",
+      "away": "Parhomenko D.",
+      "sets": {
+        "home": 3,
+        "away": 2
+      },
+      "sets_detail": [
+        {
+          "set": 1,
+          "home": 10,
+          "away": 12
+        },
+        {
+          "set": 2,
+          "home": 8,
+          "away": 11
+        },
+        {
+          "set": 3,
+          "home": 11,
+          "away": 9
+        },
+        {
+          "set": 4,
+          "home": 11,
+          "away": 6
+        },
+        {
+          "set": 5,
+          "home": 11,
+          "away": 6
+        }
+      ],
+      "winner": "Fojt P.",
+      "slug": "parhomenko-fojt"
+    }
+  ],
+  "upcoming": [
+    {
+      "id": 16414258,
+      "status": "programado",
+      "start_time": "2026-06-30T13:30:00+00:00",
+      "home": "Wawrosz P.",
+      "away": "Vavrecka M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "vavrecka-wawrosz"
+    },
+    {
+      "id": 16414259,
+      "status": "programado",
+      "start_time": "2026-06-30T13:30:00+00:00",
+      "home": "Zahradka M.",
+      "away": "Prikasky L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "prikasky-zahradka"
+    },
+    {
+      "id": 16414255,
+      "status": "programado",
+      "start_time": "2026-06-30T13:30:00+00:00",
+      "home": "Novotny L.",
+      "away": "Havrda C.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "novotny-havrda"
+    },
+    {
+      "id": 16414257,
+      "status": "programado",
+      "start_time": "2026-06-30T13:30:00+00:00",
+      "home": "Serak P.",
+      "away": "Stary J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "stary-serak"
+    },
+    {
+      "id": 16414256,
+      "status": "programado",
+      "start_time": "2026-06-30T13:30:00+00:00",
+      "home": "Palmi I.",
+      "away": "Foltynek J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "palmi-foltynek"
+    },
+    {
+      "id": 16414263,
+      "status": "programado",
+      "start_time": "2026-06-30T14:00:00+00:00",
+      "home": "Ruzicka J.",
+      "away": "Huk M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "ruzicka-huk"
+    },
+    {
+      "id": 16414261,
+      "status": "programado",
+      "start_time": "2026-06-30T14:00:00+00:00",
+      "home": "Jezek M.",
+      "away": "Mecl Jr J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "mecl-jr-jezek"
+    },
+    {
+      "id": 16414260,
+      "status": "programado",
+      "start_time": "2026-06-30T14:00:00+00:00",
+      "home": "Chalupa M.",
+      "away": "Unzeitig D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "unzeitig-chalupa"
+    },
+    {
+      "id": 16414262,
+      "status": "programado",
+      "start_time": "2026-06-30T14:00:00+00:00",
+      "home": "Opanasiuk D.",
+      "away": "Nesnera J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "opanasiuk-nesnera"
+    },
+    {
+      "id": 16414264,
+      "status": "programado",
+      "start_time": "2026-06-30T14:00:00+00:00",
+      "home": "Taichman I.",
+      "away": "Hanel P.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "hanel-taichman"
+    },
+    {
+      "id": 16414268,
+      "status": "programado",
+      "start_time": "2026-06-30T14:30:00+00:00",
+      "home": "Mares E.",
+      "away": "Vojtech Koubek",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "vojtech-koubek-mares"
+    },
+    {
+      "id": 16414265,
+      "status": "programado",
+      "start_time": "2026-06-30T14:30:00+00:00",
+      "home": "Barton A.",
+      "away": "Svacha O.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "svacha-barton"
+    },
+    {
+      "id": 16414269,
+      "status": "programado",
+      "start_time": "2026-06-30T14:30:00+00:00",
+      "home": "Prikasky L.",
+      "away": "Zahradka M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "prikasky-zahradka"
+    },
+    {
+      "id": 16414267,
+      "status": "programado",
+      "start_time": "2026-06-30T14:30:00+00:00",
+      "home": "Hrabec J.",
+      "away": "Zurek F.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "hrabec-zurek"
+    },
+    {
+      "id": 16414266,
+      "status": "programado",
+      "start_time": "2026-06-30T14:30:00+00:00",
+      "home": "Holub M.",
+      "away": "Kern L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kern-holub"
+    },
+    {
+      "id": 16414271,
+      "status": "programado",
+      "start_time": "2026-06-30T15:00:00+00:00",
+      "home": "Huk M.",
+      "away": "Prikasky L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "prikasky-huk"
+    },
+    {
+      "id": 16414273,
+      "status": "programado",
+      "start_time": "2026-06-30T15:00:00+00:00",
+      "home": "Nesnera J.",
+      "away": "Mares E.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "nesnera-mares"
+    },
+    {
+      "id": 16414272,
+      "status": "programado",
+      "start_time": "2026-06-30T15:00:00+00:00",
+      "home": "Mecl Jr J.",
+      "away": "Barton A.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "mecl-jr-barton"
+    },
+    {
+      "id": 16414274,
+      "status": "programado",
+      "start_time": "2026-06-30T15:00:00+00:00",
+      "home": "Unzeitig D.",
+      "away": "Holub M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "unzeitig-holub"
+    },
+    {
+      "id": 16414270,
+      "status": "programado",
+      "start_time": "2026-06-30T15:00:00+00:00",
+      "home": "Hanel P.",
+      "away": "Hrabec J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "hanel-hrabec"
+    },
+    {
+      "id": 16414278,
+      "status": "programado",
+      "start_time": "2026-06-30T15:30:00+00:00",
+      "home": "Zahradka M.",
+      "away": "Ruzicka J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "ruzicka-zahradka"
+    },
+    {
+      "id": 16414277,
+      "status": "programado",
+      "start_time": "2026-06-30T15:30:00+00:00",
+      "home": "Svacha O.",
+      "away": "Jezek M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "svacha-jezek"
+    },
+    {
+      "id": 16414276,
+      "status": "programado",
+      "start_time": "2026-06-30T15:30:00+00:00",
+      "home": "Vojtech Koubek",
+      "away": "Opanasiuk D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "opanasiuk-vojtech-koubek"
+    },
+    {
+      "id": 16414275,
+      "status": "programado",
+      "start_time": "2026-06-30T15:30:00+00:00",
+      "home": "Kern L.",
+      "away": "Chalupa M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kern-chalupa"
+    },
+    {
+      "id": 16414279,
+      "status": "programado",
+      "start_time": "2026-06-30T15:30:00+00:00",
+      "home": "Zurek F.",
+      "away": "Taichman I.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "taichman-zurek"
+    },
+    {
+      "id": 16414283,
+      "status": "programado",
+      "start_time": "2026-06-30T16:00:00+00:00",
+      "home": "Ruzicka J.",
+      "away": "Prikasky L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "prikasky-ruzicka"
+    },
+    {
+      "id": 16414282,
+      "status": "programado",
+      "start_time": "2026-06-30T16:00:00+00:00",
+      "home": "Opanasiuk D.",
+      "away": "Mares E.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "opanasiuk-mares"
+    },
+    {
+      "id": 16414281,
+      "status": "programado",
+      "start_time": "2026-06-30T16:00:00+00:00",
+      "home": "Jezek M.",
+      "away": "Barton A.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "jezek-barton"
+    },
+    {
+      "id": 16414280,
+      "status": "programado",
+      "start_time": "2026-06-30T16:00:00+00:00",
+      "home": "Chalupa M.",
+      "away": "Holub M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "chalupa-holub"
+    },
+    {
+      "id": 16414284,
+      "status": "programado",
+      "start_time": "2026-06-30T16:00:00+00:00",
+      "home": "Taichman I.",
+      "away": "Hrabec J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "hrabec-taichman"
+    },
+    {
+      "id": 16414286,
+      "status": "programado",
+      "start_time": "2026-06-30T16:30:00+00:00",
+      "home": "Huk M.",
+      "away": "Zahradka M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "zahradka-huk"
+    },
+    {
+      "id": 16414287,
+      "status": "programado",
+      "start_time": "2026-06-30T16:30:00+00:00",
+      "home": "Mecl Jr J.",
+      "away": "Svacha O.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "svacha-mecl-jr"
+    },
+    {
+      "id": 16414288,
+      "status": "programado",
+      "start_time": "2026-06-30T16:30:00+00:00",
+      "home": "Nesnera J.",
+      "away": "Vojtech Koubek",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "nesnera-vojtech-koubek"
+    },
+    {
+      "id": 16414285,
+      "status": "programado",
+      "start_time": "2026-06-30T16:30:00+00:00",
+      "home": "Hanel P.",
+      "away": "Zurek F.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "hanel-zurek"
+    },
+    {
+      "id": 16414289,
+      "status": "programado",
+      "start_time": "2026-06-30T16:30:00+00:00",
+      "home": "Unzeitig D.",
+      "away": "Kern L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kern-unzeitig"
+    },
+    {
+      "id": 16414294,
+      "status": "programado",
+      "start_time": "2026-06-30T18:00:00+00:00",
+      "home": "Zuzanek J.",
+      "away": "Kasnik S.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kasnik-zuzanek"
+    },
+    {
+      "id": 16414290,
+      "status": "programado",
+      "start_time": "2026-06-30T18:00:00+00:00",
+      "home": "Bilek Z.",
+      "away": "Zeman L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "bilek-zeman"
+    },
+    {
+      "id": 16414292,
+      "status": "programado",
+      "start_time": "2026-06-30T18:00:00+00:00",
+      "home": "Pagac Z.",
+      "away": "Hudeczek R.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "pagac-hudeczek"
+    },
+    {
+      "id": 16414291,
+      "status": "programado",
+      "start_time": "2026-06-30T18:00:00+00:00",
+      "home": "Fojt P.",
+      "away": "Lubos Krticka",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "lubos-krticka-fojt"
+    },
+    {
+      "id": 16414293,
+      "status": "programado",
+      "start_time": "2026-06-30T18:00:00+00:00",
+      "home": "Walek A.",
+      "away": "Samuel Byrtus",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "samuel-byrtus-walek"
+    },
+    {
+      "id": 16414297,
+      "status": "programado",
+      "start_time": "2026-06-30T18:30:00+00:00",
+      "home": "Dousa T.",
+      "away": "Parhomenko D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "parhomenko-dousa"
+    },
+    {
+      "id": 16414299,
+      "status": "programado",
+      "start_time": "2026-06-30T18:30:00+00:00",
+      "home": "Opanasiuk D.",
+      "away": "Mares E.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "opanasiuk-mares"
+    },
+    {
+      "id": 16414298,
+      "status": "programado",
+      "start_time": "2026-06-30T18:30:00+00:00",
+      "home": "Kapras K.",
+      "away": "Tonar L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kapras-tonar"
+    },
+    {
+      "id": 16414296,
+      "status": "programado",
+      "start_time": "2026-06-30T18:30:00+00:00",
+      "home": "Chalupa M.",
+      "away": "Kern L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kern-chalupa"
+    },
+    {
+      "id": 16414295,
+      "status": "programado",
+      "start_time": "2026-06-30T18:30:00+00:00",
+      "home": "Adamczyk V.",
+      "away": "Heczko D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "adamczyk-heczko"
+    },
+    {
+      "id": 16414302,
+      "status": "programado",
+      "start_time": "2026-06-30T19:00:00+00:00",
+      "home": "Kasnik S.",
+      "away": "Kapras K.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kasnik-kapras"
+    },
+    {
+      "id": 16414303,
+      "status": "programado",
+      "start_time": "2026-06-30T19:00:00+00:00",
+      "home": "Lubos Krticka",
+      "away": "Dousa T.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "lubos-krticka-dousa"
+    },
+    {
+      "id": 16414304,
+      "status": "programado",
+      "start_time": "2026-06-30T19:00:00+00:00",
+      "home": "Zeman L.",
+      "away": "Opanasiuk D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "opanasiuk-zeman"
+    },
+    {
+      "id": 16414301,
+      "status": "programado",
+      "start_time": "2026-06-30T19:00:00+00:00",
+      "home": "Hudeczek R.",
+      "away": "Chalupa M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "chalupa-hudeczek"
+    },
+    {
+      "id": 16414300,
+      "status": "programado",
+      "start_time": "2026-06-30T19:00:00+00:00",
+      "home": "Samuel Byrtus",
+      "away": "Adamczyk V.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "adamczyk-samuel-byrtus"
+    },
+    {
+      "id": 16414307,
+      "status": "programado",
+      "start_time": "2026-06-30T19:30:00+00:00",
+      "home": "Mares E.",
+      "away": "Bilek Z.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "bilek-mares"
+    },
+    {
+      "id": 16414308,
+      "status": "programado",
+      "start_time": "2026-06-30T19:30:00+00:00",
+      "home": "Parhomenko D.",
+      "away": "Fojt P.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "parhomenko-fojt"
+    },
+    {
+      "id": 16414309,
+      "status": "programado",
+      "start_time": "2026-06-30T19:30:00+00:00",
+      "home": "Tonar L.",
+      "away": "Zuzanek J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "zuzanek-tonar"
+    },
+    {
+      "id": 16414306,
+      "status": "programado",
+      "start_time": "2026-06-30T19:30:00+00:00",
+      "home": "Kern L.",
+      "away": "Pagac Z.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kern-pagac"
+    },
+    {
+      "id": 16414305,
+      "status": "programado",
+      "start_time": "2026-06-30T19:30:00+00:00",
+      "home": "Heczko D.",
+      "away": "Walek A.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "walek-heczko"
+    },
+    {
+      "id": 16414311,
+      "status": "programado",
+      "start_time": "2026-06-30T20:00:00+00:00",
+      "home": "Fojt P.",
+      "away": "Dousa T.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "dousa-fojt"
+    },
+    {
+      "id": 16414312,
+      "status": "programado",
+      "start_time": "2026-06-30T20:00:00+00:00",
+      "home": "Pagac Z.",
+      "away": "Chalupa M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "chalupa-pagac"
+    },
+    {
+      "id": 16414314,
+      "status": "programado",
+      "start_time": "2026-06-30T20:00:00+00:00",
+      "home": "Zuzanek J.",
+      "away": "Kapras K.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kapras-zuzanek"
+    },
+    {
+      "id": 16414310,
+      "status": "programado",
+      "start_time": "2026-06-30T20:00:00+00:00",
+      "home": "Bilek Z.",
+      "away": "Opanasiuk D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "opanasiuk-bilek"
+    },
+    {
+      "id": 16414313,
+      "status": "programado",
+      "start_time": "2026-06-30T20:00:00+00:00",
+      "home": "Walek A.",
+      "away": "Adamczyk V.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "adamczyk-walek"
+    },
+    {
+      "id": 16414319,
+      "status": "programado",
+      "start_time": "2026-06-30T20:30:00+00:00",
+      "home": "Zeman L.",
+      "away": "Mares E.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "zeman-mares"
+    },
+    {
+      "id": 16414318,
+      "status": "programado",
+      "start_time": "2026-06-30T20:30:00+00:00",
+      "home": "Lubos Krticka",
+      "away": "Parhomenko D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "parhomenko-lubos-krticka"
+    },
+    {
+      "id": 16414317,
+      "status": "programado",
+      "start_time": "2026-06-30T20:30:00+00:00",
+      "home": "Kasnik S.",
+      "away": "Tonar L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kasnik-tonar"
+    },
+    {
+      "id": 16414315,
+      "status": "programado",
+      "start_time": "2026-06-30T20:30:00+00:00",
+      "home": "Samuel Byrtus",
+      "away": "Heczko D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "samuel-byrtus-heczko"
+    },
+    {
+      "id": 16414316,
+      "status": "programado",
+      "start_time": "2026-06-30T20:30:00+00:00",
+      "home": "Hudeczek R.",
+      "away": "Kern L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "kern-hudeczek"
+    },
+    {
+      "id": 16414320,
+      "status": "programado",
+      "start_time": "2026-06-30T22:00:00+00:00",
+      "home": "Grohsgott J.",
+      "away": "Mutl D.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "grohsgott-mutl"
+    },
+    {
+      "id": 16414322,
+      "status": "programado",
+      "start_time": "2026-06-30T22:00:00+00:00",
+      "home": "Vitrovyj O.",
+      "away": "Bruzek P.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "bruzek-vitrovyj"
+    },
+    {
+      "id": 16414321,
+      "status": "programado",
+      "start_time": "2026-06-30T22:00:00+00:00",
+      "home": "Sulava L.",
+      "away": "Pelikan J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "pelikan-sulava"
+    },
+    {
+      "id": 16414325,
+      "status": "programado",
+      "start_time": "2026-06-30T22:30:00+00:00",
+      "home": "Strnad J.",
+      "away": "Syroha M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "syroha-strnad"
+    },
+    {
+      "id": 16414324,
+      "status": "programado",
+      "start_time": "2026-06-30T22:30:00+00:00",
+      "home": "Regner T.",
+      "away": "Novak M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "regner-novak"
+    },
+    {
+      "id": 16414323,
+      "status": "programado",
+      "start_time": "2026-06-30T22:30:00+00:00",
+      "home": "Potensky J.",
+      "away": "Havrda L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "havrda-potensky"
+    },
+    {
+      "id": 16414326,
+      "status": "programado",
+      "start_time": "2026-06-30T23:00:00+00:00",
+      "home": "Bruzek P.",
+      "away": "Andrle T.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "bruzek-andrle"
+    },
+    {
+      "id": 16414328,
+      "status": "programado",
+      "start_time": "2026-06-30T23:00:00+00:00",
+      "home": "Pelikan J.",
+      "away": "Didi J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "didi-pelikan"
+    },
+    {
+      "id": 16414327,
+      "status": "programado",
+      "start_time": "2026-06-30T23:00:00+00:00",
+      "home": "Mutl D.",
+      "away": "Mazanek S.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "mazanek-mutl"
+    },
+    {
+      "id": 16414331,
+      "status": "programado",
+      "start_time": "2026-06-30T23:30:00+00:00",
+      "home": "Vitrovyj O.",
+      "away": "Regner T.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "vitrovyj-regner"
+    },
+    {
+      "id": 16414329,
+      "status": "programado",
+      "start_time": "2026-06-30T23:30:00+00:00",
+      "home": "Grohsgott J.",
+      "away": "Potensky J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "grohsgott-potensky"
+    },
+    {
+      "id": 16414330,
+      "status": "programado",
+      "start_time": "2026-06-30T23:30:00+00:00",
+      "home": "Sulava L.",
+      "away": "Strnad J.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "strnad-sulava"
+    },
+    {
+      "id": 16414333,
+      "status": "programado",
+      "start_time": "2026-07-01T00:00:00+00:00",
+      "home": "Didi J.",
+      "away": "Syroha M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "didi-syroha"
+    },
+    {
+      "id": 16414332,
+      "status": "programado",
+      "start_time": "2026-07-01T00:00:00+00:00",
+      "home": "Andrle T.",
+      "away": "Novak M.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "novak-andrle"
+    },
+    {
+      "id": 16414334,
+      "status": "programado",
+      "start_time": "2026-07-01T00:00:00+00:00",
+      "home": "Mazanek S.",
+      "away": "Havrda L.",
+      "sets": {
+        "home": 0,
+        "away": 0
+      },
+      "sets_detail": [],
+      "winner": null,
+      "slug": "havrda-mazanek"
+    }
+  ]
+}

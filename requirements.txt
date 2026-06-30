@@ -1,0 +1,4 @@
+streamlit==1.32.0
+pandas==2.2.1
+playwright==1.42.0
+pytest-playwright==0.4.3
