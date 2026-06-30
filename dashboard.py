@@ -213,6 +213,7 @@ with tab_upcoming:
                 odds_map[row['match_id']] = (row['home_odd'], row['away_odd'])
             
             cartelera = []
+            stake_opportunities = [] # EL RADAR REGRESA AQUÍ
             partidos_activos_analisis = [] # Lista guardada para el selector de análisis
             now_utc = datetime.now(timezone.utc)
             
@@ -252,15 +253,35 @@ with tab_upcoming:
                 ev_h = (prob_h * cuota_h) - 1
                 ev_a = (prob_a * cuota_a) - 1
 
+                monto_sugerido_cop = f"${calcular_monto_real(1.0):,.0f}"
+
                 # Formato visual de probabilidad
                 prob_h_str = f"<span style='color:{'#34d399' if prob_h > prob_a else '#94a3b8'}; font-weight:bold;'>{prob_h*100:.1f}%</span>"
                 prob_a_str = f"<span style='color:{'#34d399' if prob_a > prob_h else '#94a3b8'}; font-weight:bold;'>{prob_a*100:.1f}%</span>"
                 
-                # Evaluador rápido visual
+                # Evaluador rápido visual y llenado del Radar de Oportunidades
                 if ev_h > 0 and (prob_h*100) >= seguridad_minima:
                     veredicto = f"<span class='high-prob'>🔥 Apostar a {h_name}</span>"
+                    stake_opportunities.append({
+                        "Hora": hora_str,
+                        "Apostar por": h_name,
+                        "Oponente": a_name,
+                        "Cuota": cuota_h,
+                        "Probabilidad": f"{prob_h*100:.1f}%",
+                        "EV (Rentabilidad)": f"+{ev_h:.2f}",
+                        "Sugerencia": monto_sugerido_cop
+                    })
                 elif ev_a > 0 and (prob_a*100) >= seguridad_minima:
                     veredicto = f"<span class='high-prob'>🔥 Apostar a {a_name}</span>"
+                    stake_opportunities.append({
+                        "Hora": hora_str,
+                        "Apostar por": a_name,
+                        "Oponente": h_name,
+                        "Cuota": cuota_a,
+                        "Probabilidad": f"{prob_a*100:.1f}%",
+                        "EV (Rentabilidad)": f"+{ev_a:.2f}",
+                        "Sugerencia": monto_sugerido_cop
+                    })
                 else:
                     veredicto = "<span class='low-prob'>Riesgo (Sin Valor)</span>"
                 
@@ -287,8 +308,15 @@ with tab_upcoming:
                         "hora": hora_str
                     })
 
-            # --- 1. MOSTRAR CARTELERA COMPLETA (MEJORADA Y ÚNICA) ---
-            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>📅 Cartelera Activa en Stake (Hora Colombiana)</div>", unsafe_allow_html=True)
+            # --- 1. MOSTRAR RADAR DE STAKE (OPORTUNIDADES EV > 0) ---
+            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>🔥 Radar Stake: Oportunidades de Valor Matemático</div>", unsafe_allow_html=True)
+            if stake_opportunities:
+                st.dataframe(pd.DataFrame(stake_opportunities), use_container_width=True, hide_index=True)
+            else:
+                st.info("Ningún partido cumple con el Valor Esperado (EV) positivo y la seguridad mínima en este momento. Mantén la disciplina.")
+
+            # --- 2. MOSTRAR CARTELERA COMPLETA ---
+            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #1e3a8a 0%, #0f172a 100%); border-left-color: #3b82f6;'>📅 Cartelera General en Stake (Hora Colombiana)</div>", unsafe_allow_html=True)
             
             if cartelera:
                 df_cartelera = pd.DataFrame(cartelera)
@@ -299,7 +327,7 @@ with tab_upcoming:
             else:
                 st.info("No hay cuotas activas actualmente. Asegúrate de correr el Scraper para sincronizar tu base de datos.")
             
-            # --- 2. MÓDULO INTERACTIVO DE ANÁLISIS PROFUNDO ---
+            # --- 3. MÓDULO INTERACTIVO DE ANÁLISIS PROFUNDO ---
             st.markdown("---")
             st.subheader("🔍 Análisis Profundo de Partido (Pre-Match)")
             st.caption("Solo se muestran los partidos que **aún no han comenzado**, para que puedas analizarlos en frío antes de apostar.")
