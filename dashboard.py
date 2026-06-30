@@ -83,7 +83,7 @@ def save_bet(partido, jugador, cuota, stake, ev):
         conn.execute('''
             INSERT INTO bet_history (fecha, partido, jugador_apostado, cuota, stake, estado, ev_esperado)
             VALUES (?, ?, ?, ?, ?, 'Pendiente', ?)
-        ''', (fecha_actual, partido, jugador, cuota, stake, ev))
+        ''')
         conn.commit()
         st.toast("✅ Apuesta guardada exitosamente en el Tracker")
     except Exception as e:
@@ -112,12 +112,12 @@ def calculate_advanced_probability(p1, p2, elo_p1, elo_p2):
     else:
         prob_final = prob_base
         
-    fatigue_p1 = db_manager.get_player_fatigue(p1)
-    fatigue_p2 = db_manager.get_player_fatigue(p2)
+    fatiga_p1 = db_manager.get_player_fatigue(p1)
+    fatiga_p2 = db_manager.get_player_fatigue(p2)
     
-    if fatigue_p1 >= 4 and fatigue_p2 < 4:
+    if fatiga_p1 >= 4 and fatiga_p2 < 4:
         prob_final -= 0.05 
-    elif fatigue_p2 >= 4 and fatigue_p1 < 4:
+    elif fatiga_p2 >= 4 and fatiga_p1 < 4:
         prob_final += 0.05
         
     return max(0.01, min(0.99, prob_final)), p1_wins, p2_wins
@@ -127,19 +127,16 @@ def buscar_cuotas_flexibles(h_name, a_name, odds_map):
     Motor de búsqueda flexible. Permite encontrar las cuotas de Stake
     incluso si Stake escribe los nombres al revés o con diferentes formatos.
     """
-    # Intento 1: Coincidencia exacta (rápida)
     m1 = f"{h_name}_{a_name}".replace(" ", "_")
     m2 = f"{a_name}_{h_name}".replace(" ", "_")
     if m1 in odds_map: return odds_map[m1]
     if m2 in odds_map: return odds_map[m2]
     
-    # Intento 2: Búsqueda flexible (por apellidos/palabras clave)
     h_words = [w.lower() for w in h_name.replace(',', '').split() if len(w) > 2]
     a_words = [w.lower() for w in a_name.replace(',', '').split() if len(w) > 2]
     
     for o_id, odds in odds_map.items():
         o_id_lower = o_id.lower().replace('_', ' ').replace('-', ' ')
-        # Chequea si al menos un apellido del local y uno del visitante coinciden en Stake
         h_hit = any(w in o_id_lower for w in h_words)
         a_hit = any(w in o_id_lower for w in a_words)
         if h_hit and a_hit:
@@ -150,7 +147,7 @@ def buscar_cuotas_flexibles(h_name, a_name, odds_map):
 # ─── BARRA LATERAL (ASISTENTE STAKE + COP) ───
 st.sidebar.markdown("## 🎯 Asistente STAKE (Celular)")
 
-# 1. Enlace Directo a la App/Web de Stake (Deep Linking) - ACTUALIZADO A STAKE COLOMBIA
+# Enlace Directo a Stake Colombia
 url_stake_liga_pro = "https://stake.com.co/deportes/table-tennis/world/czech-liga-pro"
 st.sidebar.markdown(f"""
 <a href="{url_stake_liga_pro}" target="_blank" style="text-decoration: none;">
@@ -171,7 +168,7 @@ st.sidebar.markdown(f"""
 </a>
 """, unsafe_allow_html=True)
 
-# 2. Configuración en Pesos Colombianos (COP)
+# Calculadora COP
 st.sidebar.markdown("### 💰 Calculadora (COP)")
 moneda_stake = st.sidebar.selectbox("Moneda Activa:", ["COP"])
 valor_unidad = st.sidebar.number_input(f"Valor 1 Unidad (COP):", min_value=1000, value=10000, step=5000, format="%d")
@@ -194,14 +191,14 @@ st.markdown("<p style='color:#94a3b8; font-size:1.1rem; margin-top:-15px;'>Filtr
 
 # ─── ARQUITECTURA MULTI-PESTAÑA ───
 tab_upcoming, tab_results, tab_analytics, tab_pnl = st.tabs([
-    "🎯 Radar Stake & Cartelera", 
+    "🎯 Cartelera Stake & Análisis", 
     "🏆 Últimos Resultados",
     "📊 Jugadores & Analytics",
     "📒 Tracker (COP)"
 ])
 
 # =====================================================================
-# TAB 1: CARTELERA SEGURA & VENTANA STAKE (EXCLUSIVO STAKE)
+# TAB 1: CARTELERA ENRIQUECIDA STAKE Y ANÁLISIS PROFUNDO
 # =====================================================================
 with tab_upcoming:
     try:
@@ -220,13 +217,13 @@ with tab_upcoming:
                 st.warning("⚠️ **ATENCIÓN:** Tu base de datos actual no tiene cuotas de Stake registradas. Para que los partidos aparezcan aquí, debes ejecutar el scraper en tu PC y actualizar el archivo `database.db` en GitHub.")
             
             cartelera = []
-            stake_opportunities = []
+            partidos_activos_analisis = [] # Lista guardada para el selector de análisis
             partidos_sin_cuota = []
             
             for _, m in df_upcoming.iterrows():
                 h_name, a_name = m["home"], m["away"]
                 
-                # Búsqueda Inteligente de Cuotas (ignora si Stake escribe los nombres distinto)
+                # Búsqueda Inteligente de Cuotas
                 cuotas = buscar_cuotas_flexibles(h_name, a_name, odds_map)
                 
                 dt_local = None
@@ -240,12 +237,7 @@ with tab_upcoming:
                 hora_str = dt_local.strftime("%H:%M") if dt_local else "TBD"
                 
                 if not cuotas: 
-                    # Guardamos temporalmente los que no cruzaron por si quieres verlos
-                    partidos_sin_cuota.append({
-                        "Fecha": fecha_str,
-                        "Hora": hora_str,
-                        "Partido": f"{h_name} vs {a_name}"
-                    })
+                    partidos_sin_cuota.append({"Fecha": fecha_str, "Hora": hora_str, "Partido": f"{h_name} vs {a_name}"})
                     continue
                     
                 cuota_h, cuota_a = cuotas
@@ -257,69 +249,113 @@ with tab_upcoming:
                 
                 ev_h = (prob_h * cuota_h) - 1
                 ev_a = (prob_a * cuota_a) - 1
-                
-                monto_sugerido_cop = f"${calcular_monto_real(1.0):,.0f}"
-                
-                if ev_h > 0 and (prob_h * 100) >= seguridad_minima:
-                    stake_opportunities.append({
-                        "Hora": hora_str,
-                        "Apostar por (Ganador)": h_name,
-                        "Oponente": a_name,
-                        "Cuota (Stake)": cuota_h,
-                        "Prob.": f"{prob_h*100:.1f}%",
-                        "Invertir": monto_sugerido_cop
-                    })
-                elif ev_a > 0 and (prob_a * 100) >= seguridad_minima:
-                    stake_opportunities.append({
-                        "Hora": hora_str,
-                        "Apostar por (Ganador)": a_name,
-                        "Oponente": h_name,
-                        "Cuota (Stake)": cuota_a,
-                        "Prob.": f"{prob_a*100:.1f}%",
-                        "Invertir": monto_sugerido_cop
-                    })
 
-                max_prob = max(prob_h, prob_a) * 100
-                if max_prob >= 75: veredicto = f"<span class='high-prob'>🔥 Seguro ({(max_prob):.0f}%)</span>"
-                elif max_prob >= 65: veredicto = f"<span class='med-prob'>✔️ Favorito ({(max_prob):.0f}%)</span>"
-                else: veredicto = "<span class='low-prob'>Riesgo (Igualado)</span>"
+                # Formato visual de probabilidad
+                prob_h_str = f"<span style='color:{'#34d399' if prob_h > prob_a else '#94a3b8'}; font-weight:bold;'>{prob_h*100:.1f}%</span>"
+                prob_a_str = f"<span style='color:{'#34d399' if prob_a > prob_h else '#94a3b8'}; font-weight:bold;'>{prob_a*100:.1f}%</span>"
                 
+                # Evaluador rápido visual
+                if ev_h > 0 and (prob_h*100) >= seguridad_minima:
+                    veredicto = f"<span class='high-prob'>🔥 Apostar a {h_name}</span>"
+                elif ev_a > 0 and (prob_a*100) >= seguridad_minima:
+                    veredicto = f"<span class='high-prob'>🔥 Apostar a {a_name}</span>"
+                else:
+                    veredicto = "<span class='low-prob'>Riesgo (Sin Valor)</span>"
+                
+                # Llenado de la Cartelera Principal (Mejorada)
                 cartelera.append({
                     "Fecha": fecha_str,
                     "Hora": hora_str,
                     "Partido": f"<b>{h_name}</b> vs <b>{a_name}</b>",
-                    "Probabilidad": f"{prob_h*100:.1f}% vs {prob_a*100:.1f}%",
-                    "Cuotas (Stake)": f"<span style='color:#34d399'>{cuota_h}</span> | <span style='color:#34d399'>{cuota_a}</span>",
+                    "Prob. Modelo": f"{prob_h_str} vs {prob_a_str}",
+                    "Cuotas (Stake)": f"<span style='color:#38bdf8'>{cuota_h}</span> | <span style='color:#38bdf8'>{cuota_a}</span>",
                     "H2H Histórico": f"{h2h_h} - {h2h_a}",
-                    "Veredicto": veredicto
+                    "Acción Recomendada": veredicto
                 })
-            
-            # --- 1. MOSTRAR VENTANA EXCLUSIVA DE STAKE (OPORTUNIDADES) ---
-            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>🔥 Radar Stake: Oportunidades de Valor (Ganador de Partido)</div>", unsafe_allow_html=True)
-            if stake_opportunities:
-                st.dataframe(pd.DataFrame(stake_opportunities), use_container_width=True, hide_index=True)
-            else:
-                st.info("Ningún partido de Stake cumple con el Valor Esperado (EV) positivo en este momento. Paciencia.")
-            
-            # --- 2. MOSTRAR CARTELERA COMPLETA (SOLO MERCADOS ACTIVOS EN STAKE) ---
-            st.markdown("---")
-            st.subheader("📅 Cartelera Activa en Stake")
-            st.caption("Estos son TODOS los partidos que el sistema ha enlazado exitosamente con cuotas reales de Stake.")
+                
+                # Guardar datos puros para la vista de Análisis Profundo
+                partidos_activos_analisis.append({
+                    "home": h_name, "away": a_name,
+                    "cuota_h": cuota_h, "cuota_a": cuota_a,
+                    "prob_h": prob_h, "prob_a": prob_a,
+                    "ev_h": ev_h, "ev_a": ev_a,
+                    "elo_h": elo_h, "elo_a": elo_a,
+                    "h2h_h": h2h_h, "h2h_a": h2h_a
+                })
+
+            # --- 1. MOSTRAR CARTELERA COMPLETA (MEJORADA Y ÚNICA) ---
+            st.markdown("<div class='date-header' style='background: linear-gradient(90deg, #064e3b 0%, #022c22 100%); border-left-color: #10b981;'>📅 Cartelera Activa en Stake (Mercados Abiertos)</div>", unsafe_allow_html=True)
             
             if cartelera:
                 df_cartelera = pd.DataFrame(cartelera)
                 for dia in df_cartelera['Fecha'].unique():
-                    st.markdown(f"<div class='date-header'>Programación: {dia}</div>", unsafe_allow_html=True)
+                    st.markdown(f"#### Programación: {dia}")
                     df_dia = df_cartelera[df_cartelera['Fecha'] == dia].drop(columns=['Fecha'])
                     st.markdown(df_dia.to_html(escape=False, index=False), unsafe_allow_html=True)
             elif odds_map:
                 st.info("Hay cuotas en la base de datos, pero los nombres difieren drásticamente y no se pudieron enlazar. Verifica la ejecución del scraper.")
+            
+            # --- 2. MÓDULO INTERACTIVO DE ANÁLISIS PROFUNDO ---
+            st.markdown("---")
+            st.subheader("🔍 Análisis Profundo de Partido")
+            st.caption("Selecciona cualquier partido de arriba para desgajar las matemáticas, ELO y fatiga antes de apostar.")
+            
+            opciones_partidos = ["Seleccionar partido..."] + [f"{p['home']} vs {p['away']}" for p in partidos_activos_analisis]
+            seleccion = st.selectbox("Selecciona un juego vivo en Stake:", opciones_partidos)
+            
+            if seleccion != "Seleccionar partido...":
+                p_data = next(p for p in partidos_activos_analisis if f"{p['home']} vs {p['away']}" == seleccion)
                 
-            # --- 3. MOSTRAR PARTIDOS HUÉRFANOS (OPCIONAL/DEBUG) ---
+                # Extracción de fatiga para la vista profunda
+                fatiga_h = db_manager.get_player_fatigue(p_data['home'])
+                fatiga_a = db_manager.get_player_fatigue(p_data['away'])
+                
+                st.markdown(f"<h3 style='text-align:center; color:#f8fafc; margin-top:20px;'>{p_data['home']} vs {p_data['away']}</h3>", unsafe_allow_html=True)
+                
+                c1, c2 = st.columns(2)
+                
+                with c1:
+                    is_fav = p_data['prob_h'] > p_data['prob_a']
+                    st.markdown(f"""
+                    <div class='metric-card' style='border-color: {"#3b82f6" if is_fav else "#334155"};'>
+                        <h3>{p_data['home']} (Local)</h3>
+                        <p style='margin-bottom:5px'><b>Prob. Modelo:</b> <span style='font-size:1.4rem; color:{"#34d399" if is_fav else "#94a3b8"};'>{p_data['prob_h']*100:.1f}%</span></p>
+                        <p style='margin-bottom:5px'><b>Cuota Stake:</b> {p_data['cuota_h']}</p>
+                        <p style='margin-bottom:5px'><b>Valor EV:</b> {'<span style="color:#34d399">+' + str(round(p_data['ev_h'],2)) + ' (Rentable)</span>' if p_data['ev_h'] > 0 else '<span style="color:#f87171">' + str(round(p_data['ev_h'],2)) + ' (No apostar)</span>'}</p>
+                        <hr style='border-color:#334155'>
+                        <p style='margin:0; font-size:0.9rem; color:#cbd5e1'>ELO: {int(p_data['elo_h'])} | Fatiga (24h): <b>{fatiga_h}</b> juegos</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    
+                with c2:
+                    is_fav_a = p_data['prob_a'] > p_data['prob_h']
+                    st.markdown(f"""
+                    <div class='metric-card' style='border-color: {"#3b82f6" if is_fav_a else "#334155"};'>
+                        <h3>{p_data['away']} (Visitante)</h3>
+                        <p style='margin-bottom:5px'><b>Prob. Modelo:</b> <span style='font-size:1.4rem; color:{"#34d399" if is_fav_a else "#94a3b8"};'>{p_data['prob_a']*100:.1f}%</span></p>
+                        <p style='margin-bottom:5px'><b>Cuota Stake:</b> {p_data['cuota_a']}</p>
+                        <p style='margin-bottom:5px'><b>Valor EV:</b> {'<span style="color:#34d399">+' + str(round(p_data['ev_a'],2)) + ' (Rentable)</span>' if p_data['ev_a'] > 0 else '<span style="color:#f87171">' + str(round(p_data['ev_a'],2)) + ' (No apostar)</span>'}</p>
+                        <hr style='border-color:#334155'>
+                        <p style='margin:0; font-size:0.9rem; color:#cbd5e1'>ELO: {int(p_data['elo_a'])} | Fatiga (24h): <b>{fatiga_a}</b> juegos</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                st.info(f"📊 **Contexto Histórico (Últimos 150):** {p_data['home']} ha ganado **{p_data['h2h_h']}** veces, mientras que {p_data['away']} ha ganado **{p_data['h2h_a']}** veces en enfrentamientos directos.")
+                
+                # Dictamen Final del Modelo
+                if p_data['ev_h'] > 0 and (p_data['prob_h']*100) >= seguridad_minima:
+                    st.success(f"🎯 **DICTAMEN DEL MODELO:** Apuesta altamente recomendada a **{p_data['home']}** a cuota {p_data['cuota_h']}. El modelo detecta una ventaja matemática superior a la casa de apuestas.")
+                elif p_data['ev_a'] > 0 and (p_data['prob_a']*100) >= seguridad_minima:
+                    st.success(f"🎯 **DICTAMEN DEL MODELO:** Apuesta altamente recomendada a **{p_data['away']}** a cuota {p_data['cuota_a']}. El modelo detecta una ventaja matemática superior a la casa de apuestas.")
+                else:
+                    st.warning("⛔ **DICTAMEN DEL MODELO:** Abstenerse de apostar. Ningún jugador ofrece un Valor Esperado (EV) positivo suficiente para arriesgar el capital con la seguridad actual.")
+
+            # --- 3. MOSTRAR PARTIDOS HUÉRFANOS (Expander para que no estorbe) ---
             if partidos_sin_cuota:
-                with st.expander("👀 Ver Partidos programados en sistema (Sin cuotas de Stake registradas)"):
-                    st.markdown("Estos partidos están próximos a jugarse, pero **no se encontraron sus cuotas** en la última actualización de tu base de datos local. Ejecuta tu scraper de Stake para verlos arriba.")
-                    st.dataframe(pd.DataFrame(partidos_sin_cuota), hide_index=True)
+                st.markdown("---")
+                with st.expander("👀 Ver Partidos programados sin cuotas registradas aún"):
+                    st.markdown("Estos partidos se acercan, pero la base de datos no tiene sus cuotas actualizadas desde Stake. Corre tu scraper para visualizarlos arriba.")
+                    st.dataframe(pd.DataFrame(partidos_sin_cuota), hide_index=True, use_container_width=True)
                 
         else:
             st.info("Esperando que el Scraper alimente la base de datos...")
