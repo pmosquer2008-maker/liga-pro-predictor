@@ -102,12 +102,19 @@ def parse_events(payload: dict) -> list[dict]:
     return results
 
 async def fetch_json(page, path: str) -> dict | None:
+    # 🔴 ANTÍDOTO ANTI-CACHÉ: Obliga al navegador a pedir datos frescos siempre
     js = f"""
     async () => {{
         try {{
             const r = await fetch('{path}', {{
                 credentials: 'include',
-                headers: {{'Accept': 'application/json'}}
+                cache: 'no-store',
+                headers: {{
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+                    'Pragma': 'no-cache',
+                    'Expires': '0'
+                }}
             }});
             return {{status: r.status, body: await r.text()}};
         }} catch(e) {{ return {{status: 0, body: e.message}}; }}
@@ -123,6 +130,7 @@ async def fetch_json(page, path: str) -> dict | None:
 
 async def scrape():
     db_manager.init_db()
+    log.info(f"Iniciando ciclo de Scraping - Hora del servidor: {datetime.now(timezone.utc).isoformat()}")
     
     all_finished = []
     seen_ids = set()
@@ -136,11 +144,10 @@ async def scrape():
     except Exception as e:
         pass
 
-    ids = {"season": None} # Inicializamos los ids
-    tid = "19039" # ID fijo del torneo Czech Liga Pro
+    ids = {"season": None}
+    tid = "19039"
 
     async with async_playwright() as p:
-        # 1. Lanzamos el navegador asíncrono con escudos antibot
         browser = await p.chromium.launch(
             headless=True,
             args=[
@@ -150,7 +157,6 @@ async def scrape():
             ]
         )
         
-        # 2. Contexto asíncrono simulando ser humano
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             viewport={"width": 1920, "height": 1080},
@@ -158,16 +164,13 @@ async def scrape():
             timezone_id="America/Bogota"
         )
         
-        # 3. Ocultar webdriver
         await context.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         
         page = await context.new_page()
         
-        # 4. Navegación con tiempo de espera (CORREGIDO: Usamos TOURNAMENT_URL real)
-        log.info("Entrando a la página (Modo Stealth Asíncrono)...")
+        log.info("Entrando a la página (Modo Stealth Asíncrono Anti-Caché)...")
         await page.goto(TOURNAMENT_URL)
         
-        # ¡Pausa humana asíncrona! Esperamos 8 segundos para pasar controles de seguridad
         await page.wait_for_timeout(8000) 
 
         async def sniff(response):
@@ -196,7 +199,6 @@ async def scrape():
         all_upcoming = []
         new_matches_added = 0
 
-        # ── LECTURA PROFUNDA EXTREMA (20 páginas = ~300 partidos para recuperar apagones largos) ──
         log.info("Modo Deep Scan Activado: Leyendo hasta 20 páginas hacia atrás...")
         page_num = 0
         consecutive_empty = 0
@@ -229,7 +231,6 @@ async def scrape():
 
         log.info(f"[{new_matches_added}] partidos NUEVOS recuperados y añadidos a la BD local.")
 
-        # ── Próximos partidos: 4 pagines (aprox 60 partits) ──
         log.info("Leyendo próximos partidos (Cartelera)...")
         for np in range(4):
             path = f"/api/v1/unique-tournament/{tid}/season/{sid}/events/next/{np}"
@@ -241,15 +242,13 @@ async def scrape():
                 for e in upcoming:
                     all_upcoming.append(e)
             await asyncio.sleep(0.5)
-        log.info(f"Encontrados {len(all_upcoming)} partidos programados.")
+        log.info(f"Encontrados {len(all_upcoming)} partidos programados fresquitos.")
 
         await browser.close()
 
-    # Fuera del bloque del navegador ordenamos y guardamos
     all_finished.sort(key=lambda x: x.get("start_time") or "", reverse=True)
     all_upcoming.sort(key=lambda x: x.get("start_time") or "")
 
-    # Recalcular ELO
     elo_ratings, player_stats, last_played_dict = compute_elo_and_stats(all_finished)
 
     log.info("Actualizando base de datos SQLite...")
@@ -257,7 +256,6 @@ async def scrape():
     db_manager.save_players(elo_ratings, player_stats, last_played_dict)
     db_manager.save_upcoming(all_upcoming)
 
-    # JSON backup
     output = {
         "scraped_at": datetime.now(timezone.utc).isoformat(),
         "tournament_id": tid, "season_id": sid,
