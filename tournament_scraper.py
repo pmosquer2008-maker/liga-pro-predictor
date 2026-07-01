@@ -136,36 +136,38 @@ async def scrape():
     except Exception as e:
         pass
 
-    with sync_playwright() as p:
-    # 1. Lanzamos el navegador con escudos anti-detección
-    browser = p.chromium.launch(
-        headless=True,
-        args=[
-            "--no-sandbox",
-            "--disable-setuid-sandbox",
-            "--disable-blink-features=AutomationControlled" # Oculta que es un bot
-        ]
-    )
-    
-    # 2. Creamos un "Contexto" simulando ser un Google Chrome en Windows 11
-    context = browser.new_context(
-        user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        viewport={"width": 1920, "height": 1080},
-        locale="es-ES",
-        timezone_id="America/Bogota"
-    )
-    
-    # 3. Ocultar la propiedad 'webdriver' mediante inyección de Javascript
-    context.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-    
-    page = context.new_page()
-    
-    # 4. Navegación con tiempo de espera humano
-    print("[SCRAPER] Entrando a la página (Modo Stealth)...")
-    page.goto("AQUI_PONES_LA_URL_QUE_YA_TENIAS")
-    
-    # ¡CLAVE! Dale 5 a 8 segundos a la página para que pase el control de Cloudflare/Seguridad antes de intentar leer los datos
-    page.wait_for_timeout(8000)
+    async with async_playwright() as p:
+        # 1. Lanzamos el navegador asíncrono con escudos
+        browser = await p.chromium.launch(
+            headless=True,
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-blink-features=AutomationControlled"
+            ]
+        )
+        
+        # 2. Contexto asíncrono
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            viewport={"width": 1920, "height": 1080},
+            locale="es-ES",
+            timezone_id="America/Bogota"
+        )
+        
+        # 3. Ocultar webdriver
+        await context.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        
+        page = await context.new_page()
+        
+        # 4. Navegación con tiempo de espera (con await)
+        print("[SCRAPER] Entrando a la página (Modo Stealth Asíncrono)...")
+        await page.goto("AQUI_PONES_LA_URL_QUE_YA_TENIAS") # Reemplaza por tu URL de Scorebase/Liga Pro
+        
+        # ¡Pausa humana asíncrona!
+        await page.wait_for_timeout(8000) 
+        
+        # ... Aquí sigue el resto de tu código tal cual ...
 
         async def sniff(response):
             if "/unique-tournament/19039" in response.url:
