@@ -136,8 +136,11 @@ async def scrape():
     except Exception as e:
         pass
 
+    ids = {"season": None} # Inicializamos los ids
+    tid = "19039" # ID fijo del torneo Czech Liga Pro
+
     async with async_playwright() as p:
-        # 1. Lanzamos el navegador asíncrono con escudos
+        # 1. Lanzamos el navegador asíncrono con escudos antibot
         browser = await p.chromium.launch(
             headless=True,
             args=[
@@ -147,7 +150,7 @@ async def scrape():
             ]
         )
         
-        # 2. Contexto asíncrono
+        # 2. Contexto asíncrono simulando ser humano
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             viewport={"width": 1920, "height": 1080},
@@ -160,14 +163,12 @@ async def scrape():
         
         page = await context.new_page()
         
-        # 4. Navegación con tiempo de espera (con await)
-        print("[SCRAPER] Entrando a la página (Modo Stealth Asíncrono)...")
-        await page.goto("AQUI_PONES_LA_URL_QUE_YA_TENIAS") # Reemplaza por tu URL de Scorebase/Liga Pro
+        # 4. Navegación con tiempo de espera (CORREGIDO: Usamos TOURNAMENT_URL real)
+        log.info("Entrando a la página (Modo Stealth Asíncrono)...")
+        await page.goto(TOURNAMENT_URL)
         
-        # ¡Pausa humana asíncrona!
+        # ¡Pausa humana asíncrona! Esperamos 8 segundos para pasar controles de seguridad
         await page.wait_for_timeout(8000) 
-        
-        # ... Aquí sigue el resto de tu código tal cual ...
 
         async def sniff(response):
             if "/unique-tournament/19039" in response.url:
@@ -180,7 +181,6 @@ async def scrape():
         await page.goto(TOURNAMENT_URL, wait_until="domcontentloaded", timeout=40000)
         await page.wait_for_timeout(4000)
 
-        tid = ids["tournament"]
         sid = ids["season"]
 
         if not sid:
@@ -201,7 +201,6 @@ async def scrape():
         page_num = 0
         consecutive_empty = 0
 
-        # Aumentamos a 20 páginas para garantizar que un apagón de 24h no deje huecos
         while consecutive_empty < 2 and page_num < 20:
             path = f"/api/v1/unique-tournament/{tid}/season/{sid}/events/last/{page_num}"
             payload = await fetch_json(page, path)
@@ -246,31 +245,32 @@ async def scrape():
 
         await browser.close()
 
-        all_finished.sort(key=lambda x: x.get("start_time") or "", reverse=True)
-        all_upcoming.sort(key=lambda x: x.get("start_time") or "")
+    # Fuera del bloque del navegador ordenamos y guardamos
+    all_finished.sort(key=lambda x: x.get("start_time") or "", reverse=True)
+    all_upcoming.sort(key=lambda x: x.get("start_time") or "")
 
-        # Recalcular ELO
-        elo_ratings, player_stats, last_played_dict = compute_elo_and_stats(all_finished)
+    # Recalcular ELO
+    elo_ratings, player_stats, last_played_dict = compute_elo_and_stats(all_finished)
 
-        log.info("Actualizando base de datos SQLite...")
-        db_manager.save_matches(all_finished)
-        db_manager.save_players(elo_ratings, player_stats, last_played_dict)
-        db_manager.save_upcoming(all_upcoming)
+    log.info("Actualizando base de datos SQLite...")
+    db_manager.save_matches(all_finished)
+    db_manager.save_players(elo_ratings, player_stats, last_played_dict)
+    db_manager.save_upcoming(all_upcoming)
 
-        # JSON backup
-        output = {
-            "scraped_at": datetime.now(timezone.utc).isoformat(),
-            "tournament_id": tid, "season_id": sid,
-            "total_finished": len(all_finished),
-            "total_upcoming": len(all_upcoming),
-            "elo_ratings": elo_ratings, "player_stats": player_stats,
-            "finished": all_finished, "upcoming": all_upcoming,
-        }
-        tmp_file = OUTPUT_FILE.with_suffix('.tmp')
-        with open(tmp_file, 'w', encoding='utf-8') as f:
-            json.dump(output, f, ensure_ascii=False, indent=2)
-        os.replace(tmp_file, OUTPUT_FILE)
-        log.info("Scraping Finalizado Exitosamente.")
+    # JSON backup
+    output = {
+        "scraped_at": datetime.now(timezone.utc).isoformat(),
+        "tournament_id": tid, "season_id": sid,
+        "total_finished": len(all_finished),
+        "total_upcoming": len(all_upcoming),
+        "elo_ratings": elo_ratings, "player_stats": player_stats,
+        "finished": all_finished, "upcoming": all_upcoming,
+    }
+    tmp_file = OUTPUT_FILE.with_suffix('.tmp')
+    with open(tmp_file, 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    os.replace(tmp_file, OUTPUT_FILE)
+    log.info("Scraping Finalizado Exitosamente.")
 
 if __name__ == "__main__":
     asyncio.run(scrape())
