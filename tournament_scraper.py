@@ -1,7 +1,7 @@
 """
 tournament_scraper.py — Czech Liga Pro | Lectura Profunda (Deep Scan)
 Garantiza leer 300 partidos pasados y todos los futuros por si la PC estuvo apagada 24h+.
-Optimizada 100% para SQLite (Sin JSON residuales).
+Optimizada 100% para SQLite (Sin JSON residuales) + Escudo Anti-Borrado.
 """
 
 import asyncio
@@ -100,17 +100,25 @@ def parse_events(payload: dict) -> list[dict]:
     return results
 
 async def fetch_json(page, path: str) -> dict | None:
-    # 🟢 ANTÍDOTO ANTI-CACHÉ SEGURO: Usamos timestamp en la URL para evadir Cloudflare.
+    # 🟢 ANTÍDOTO ANTI-CACHÉ CORREGIDO: Evitamos alterar la URL (Sofascore lo rechaza).
+    # Usamos directivas estrictas de 'no-store' en la configuración de la cabecera.
     js = f"""
     async () => {{
         try {{
-            const separator = '{path}'.includes('?') ? '&' : '?';
-            const url = '{path}' + separator + '_nocache=' + Date.now();
-            const r = await fetch(url, {{
+            const r = await fetch('{path}', {{
                 credentials: 'include',
-                headers: {{'Accept': 'application/json'}}
+                cache: 'no-store',
+                headers: {{
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache'
+                }}
             }});
-            return {{status: r.status, body: await r.text()}};
+            if (r.status === 200) {{
+                return {{status: r.status, body: await r.text()}};
+            }} else {{
+                return {{status: r.status, body: ""}};
+            }}
         }} catch(e) {{ return {{status: 0, body: e.message}}; }}
     }}
     """
@@ -121,7 +129,7 @@ async def fetch_json(page, path: str) -> dict | None:
         except Exception:
             return None
     else:
-        print(f"⚠️ [API ERROR] Fallo al leer {path} - Código HTTP: {result['status']}")
+        log.warning(f"⚠️ [API ERROR] Fallo al leer {path} - Código HTTP: {result['status']}")
         return None
 
 async def scrape():
@@ -155,7 +163,7 @@ async def scrape():
         )
         
         context = await browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
             viewport={"width": 1920, "height": 1080},
             locale="es-ES",
             timezone_id="America/Bogota"
@@ -195,6 +203,9 @@ async def scrape():
 
         all_upcoming = []
         new_matches_added = 0
+        
+        # 🛡️ ESCUDO ANTI-BORRADO: Esta variable vigila que la API realmente responda
+        api_working = False 
 
         log.info("Modo Deep Scan Activado: Leyendo hasta 20 páginas hacia atrás...")
         page_num = 0
@@ -204,10 +215,12 @@ async def scrape():
             path = f"/api/v1/unique-tournament/{tid}/season/{sid}/events/last/{page_num}"
             payload = await fetch_json(page, path)
 
-            if not payload:
+            if payload is None:
                 consecutive_empty += 1
                 page_num += 1
                 continue
+                
+            api_working = True # ¡Confirmamos que la API no nos está bloqueando!
 
             events = parse_events(payload)
             finished_in_page = [e for e in events if e["status"] == "finalizado"]
@@ -225,6 +238,12 @@ async def scrape():
             
             page_num += 1
             await asyncio.sleep(0.5)
+            
+        # Si api_working es False, significa que la API rechazó todo. Abortamos para no borrar la DB.
+        if not api_working:
+            log.error("❌ FALLO MASIVO DE API (Bloqueo de Sofascore). Abortando para PROTEGER los datos actuales de tu BD...")
+            await browser.close()
+            return
 
         log.info(f"[{new_matches_added}] partidos NUEVOS recuperados.")
 
@@ -283,7 +302,7 @@ async def scrape():
     db_manager.save_players(elo_ratings, player_stats, last_played_dict) # Sobreescribimos stats correctos
     db_manager.save_upcoming(all_upcoming) # Reemplazamos la cartelera con la de hoy
 
-    log.info("Scraping Finalizado Exitosamente (Modo DB-Only).")
+    log.info("Scraping Finalizado Exitosamente (Modo DB-Only + Anti-Wipe).")
 
 if __name__ == "__main__":
     asyncio.run(scrape())
