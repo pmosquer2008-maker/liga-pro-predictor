@@ -1,7 +1,7 @@
 """
 tournament_scraper.py — Czech Liga Pro | Lectura Profunda (Deep Scan)
 Garantiza leer 300 partidos pasados y todos los futuros por si la PC estuvo apagada 24h+.
-Optimizada 100% para SQLite (Sin JSON residuales) + Escudo Anti-Borrado.
+Optimizada 100% para SQLite (Sin JSON residuales) + Stealth Avanzado.
 """
 
 import asyncio
@@ -100,20 +100,12 @@ def parse_events(payload: dict) -> list[dict]:
     return results
 
 async def fetch_json(page, path: str) -> dict | None:
-    # 🟢 ANTÍDOTO ANTI-CACHÉ CORREGIDO: Evitamos alterar la URL (Sofascore lo rechaza).
-    # Usamos directivas estrictas de 'no-store' en la configuración de la cabecera.
+    # 🟢 CAMUFLAJE PERFECTO: Usamos un fetch 100% natural, sin headers agresivos.
+    # Al no forzar reglas, Cloudflare no sospecha de nosotros.
     js = f"""
     async () => {{
         try {{
-            const r = await fetch('{path}', {{
-                credentials: 'include',
-                cache: 'no-store',
-                headers: {{
-                    'Accept': 'application/json',
-                    'Cache-Control': 'no-cache, no-store, must-revalidate',
-                    'Pragma': 'no-cache'
-                }}
-            }});
+            const r = await fetch('{path}');
             if (r.status === 200) {{
                 return {{status: r.status, body: await r.text()}};
             }} else {{
@@ -169,13 +161,20 @@ async def scrape():
             timezone_id="America/Bogota"
         )
         
-        await context.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        # Inyección profunda para engañar a Cloudflare haciéndole creer que somos Chrome
+        await context.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+            window.navigator.chrome = { runtime: {} };
+            Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3]});
+            Object.defineProperty(navigator, 'languages', {get: () => ['es-ES', 'es', 'en']});
+        """)
         
         page = await context.new_page()
         
-        log.info("Entrando a la página (Modo Stealth Asíncrono Anti-Caché)...")
+        log.info("Entrando a la página (Modo Stealth Asíncrono Natural)...")
         await page.goto(TOURNAMENT_URL)
         
+        # Tiempo de espera crucial para que Cloudflare valide nuestro "navegador humano"
         await page.wait_for_timeout(8000) 
 
         async def sniff(response):
@@ -204,7 +203,6 @@ async def scrape():
         all_upcoming = []
         new_matches_added = 0
         
-        # 🛡️ ESCUDO ANTI-BORRADO: Esta variable vigila que la API realmente responda
         api_working = False 
 
         log.info("Modo Deep Scan Activado: Leyendo hasta 20 páginas hacia atrás...")
@@ -220,7 +218,7 @@ async def scrape():
                 page_num += 1
                 continue
                 
-            api_working = True # ¡Confirmamos que la API no nos está bloqueando!
+            api_working = True
 
             events = parse_events(payload)
             finished_in_page = [e for e in events if e["status"] == "finalizado"]
@@ -239,7 +237,6 @@ async def scrape():
             page_num += 1
             await asyncio.sleep(0.5)
             
-        # Si api_working es False, significa que la API rechazó todo. Abortamos para no borrar la DB.
         if not api_working:
             log.error("❌ FALLO MASIVO DE API (Bloqueo de Sofascore). Abortando para PROTEGER los datos actuales de tu BD...")
             await browser.close()
@@ -262,11 +259,9 @@ async def scrape():
 
         await browser.close()
 
-    # Ordenar los nuevos encontrados
     all_finished.sort(key=lambda x: x.get("start_time") or "", reverse=True)
     all_upcoming.sort(key=lambda x: x.get("start_time") or "")
 
-    # ── RECONSTRUCCIÓN DEL HISTORIAL PARA ELO MATEMÁTICAMENTE CORRECTO ──
     log.info("Integrando historial completo de la BD para calcular ELO exacto...")
     all_historical = []
     try:
@@ -285,22 +280,17 @@ async def scrape():
     except Exception as e:
         log.error(f"Error extrayendo DB local: {e}")
 
-    # Fusionar los partidos viejos con los recién descargados (evitando duplicados)
     for new_m in all_finished:
         if not any(m["id"] == new_m["id"] for m in all_historical):
             all_historical.append(new_m)
 
-    # Ordenar cronológicamente (más recientes primero, la función compute_elo lo reversa internamente)
     all_historical.sort(key=lambda x: x.get("start_time") or "", reverse=True)
-
-    # Calcular ELO y Estadísticas con el 100% de los datos
     elo_ratings, player_stats, last_played_dict = compute_elo_and_stats(all_historical)
 
-    # 🔴 GUARDADO DIRECTO A LA BASE DE DATOS (.db)
     log.info("Actualizando base de datos SQLite...")
-    db_manager.save_matches(all_finished) # Solo añadimos a la DB los nuevos que faltaban
-    db_manager.save_players(elo_ratings, player_stats, last_played_dict) # Sobreescribimos stats correctos
-    db_manager.save_upcoming(all_upcoming) # Reemplazamos la cartelera con la de hoy
+    db_manager.save_matches(all_finished)
+    db_manager.save_players(elo_ratings, player_stats, last_played_dict)
+    db_manager.save_upcoming(all_upcoming)
 
     log.info("Scraping Finalizado Exitosamente (Modo DB-Only + Anti-Wipe).")
 
