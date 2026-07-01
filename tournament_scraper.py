@@ -1,21 +1,19 @@
 """
 tournament_scraper.py — Czech Liga Pro | Lectura Profunda (Deep Scan)
 Garantiza leer 300 partidos pasados y todos los futuros por si la PC estuvo apagada 24h+.
+Optimizada 100% para SQLite (Sin JSON residuales).
 """
 
 import asyncio
 import json
 import re
 import logging
-import os
-from pathlib import Path
 from datetime import datetime, timezone
 from collections import defaultdict
 from playwright.async_api import async_playwright
 import db_manager
 
 TOURNAMENT_URL = "https://www.sofascore.com/es/table-tennis/tournament/czech-republic/czech-liga-pro/19039"
-OUTPUT_FILE = Path("tournament_data.json")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [SCRAPER] %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger()
@@ -251,24 +249,13 @@ async def scrape():
 
     elo_ratings, player_stats, last_played_dict = compute_elo_and_stats(all_finished)
 
+    # 🔴 AQUÍ ES DONDE SE GUARDA TODO DIRECTAMENTE A LA BASE DE DATOS (.db)
     log.info("Actualizando base de datos SQLite...")
     db_manager.save_matches(all_finished)
     db_manager.save_players(elo_ratings, player_stats, last_played_dict)
     db_manager.save_upcoming(all_upcoming)
 
-    output = {
-        "scraped_at": datetime.now(timezone.utc).isoformat(),
-        "tournament_id": tid, "season_id": sid,
-        "total_finished": len(all_finished),
-        "total_upcoming": len(all_upcoming),
-        "elo_ratings": elo_ratings, "player_stats": player_stats,
-        "finished": all_finished, "upcoming": all_upcoming,
-    }
-    tmp_file = OUTPUT_FILE.with_suffix('.tmp')
-    with open(tmp_file, 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-    os.replace(tmp_file, OUTPUT_FILE)
-    log.info("Scraping Finalizado Exitosamente.")
+    log.info("Scraping Finalizado Exitosamente (Solo SQLite).")
 
 if __name__ == "__main__":
     asyncio.run(scrape())
