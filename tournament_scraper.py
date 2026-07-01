@@ -100,19 +100,15 @@ def parse_events(payload: dict) -> list[dict]:
     return results
 
 async def fetch_json(page, path: str) -> dict | None:
-    # 🔴 ANTÍDOTO ANTI-CACHÉ: Obliga al navegador a pedir datos frescos siempre
+    # 🟢 ANTÍDOTO ANTI-CACHÉ SEGURO: Usamos timestamp en la URL para evadir Cloudflare.
     js = f"""
     async () => {{
         try {{
-            const r = await fetch('{path}', {{
+            const separator = '{path}'.includes('?') ? '&' : '?';
+            const url = '{path}' + separator + '_nocache=' + Date.now();
+            const r = await fetch(url, {{
                 credentials: 'include',
-                cache: 'no-store',
-                headers: {{
-                    'Accept': 'application/json',
-                    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-                    'Pragma': 'no-cache',
-                    'Expires': '0'
-                }}
+                headers: {{'Accept': 'application/json'}}
             }});
             return {{status: r.status, body: await r.text()}};
         }} catch(e) {{ return {{status: 0, body: e.message}}; }}
@@ -124,7 +120,9 @@ async def fetch_json(page, path: str) -> dict | None:
             return json.loads(result["body"])
         except Exception:
             return None
-    return None
+    else:
+        print(f"⚠️ [API ERROR] Fallo al leer {path} - Código HTTP: {result['status']}")
+        return None
 
 async def scrape():
     db_manager.init_db()
@@ -151,7 +149,8 @@ async def scrape():
             args=[
                 "--no-sandbox",
                 "--disable-setuid-sandbox",
-                "--disable-blink-features=AutomationControlled"
+                "--disable-blink-features=AutomationControlled",
+                "--disable-web-security"
             ]
         )
         
@@ -190,7 +189,7 @@ async def scrape():
                 sid = str(seasons_payload["seasons"][0]["id"])
 
         if not tid or not sid:
-            log.error("No se encontraron IDs. Cerrando...")
+            log.error("No se encontraron IDs (Posible Bloqueo). Cerrando sin actualizar BD...")
             await browser.close()
             return
 
@@ -227,7 +226,7 @@ async def scrape():
             page_num += 1
             await asyncio.sleep(0.5)
 
-        log.info(f"[{new_matches_added}] partidos NUEVOS recuperados y añadidos a la BD local.")
+        log.info(f"[{new_matches_added}] partidos NUEVOS recuperados.")
 
         log.info("Leyendo próximos partidos (Cartelera)...")
         for np in range(4):
@@ -244,18 +243,47 @@ async def scrape():
 
         await browser.close()
 
+    # Ordenar los nuevos encontrados
     all_finished.sort(key=lambda x: x.get("start_time") or "", reverse=True)
     all_upcoming.sort(key=lambda x: x.get("start_time") or "")
 
-    elo_ratings, player_stats, last_played_dict = compute_elo_and_stats(all_finished)
+    # ── RECONSTRUCCIÓN DEL HISTORIAL PARA ELO MATEMÁTICAMENTE CORRECTO ──
+    log.info("Integrando historial completo de la BD para calcular ELO exacto...")
+    all_historical = []
+    try:
+        with db_manager.get_connection() as conn:
+            c = conn.cursor()
+            c.execute("SELECT id, start_time, home, away, home_sets, away_sets, status FROM matches WHERE status='finalizado'")
+            for row in c.fetchall():
+                all_historical.append({
+                    "id": row[0],
+                    "start_time": row[1],
+                    "home": row[2],
+                    "away": row[3],
+                    "sets": {"home": row[4], "away": row[5]},
+                    "status": row[6]
+                })
+    except Exception as e:
+        log.error(f"Error extrayendo DB local: {e}")
 
-    # 🔴 AQUÍ ES DONDE SE GUARDA TODO DIRECTAMENTE A LA BASE DE DATOS (.db)
+    # Fusionar los partidos viejos con los recién descargados (evitando duplicados)
+    for new_m in all_finished:
+        if not any(m["id"] == new_m["id"] for m in all_historical):
+            all_historical.append(new_m)
+
+    # Ordenar cronológicamente (más recientes primero, la función compute_elo lo reversa internamente)
+    all_historical.sort(key=lambda x: x.get("start_time") or "", reverse=True)
+
+    # Calcular ELO y Estadísticas con el 100% de los datos
+    elo_ratings, player_stats, last_played_dict = compute_elo_and_stats(all_historical)
+
+    # 🔴 GUARDADO DIRECTO A LA BASE DE DATOS (.db)
     log.info("Actualizando base de datos SQLite...")
-    db_manager.save_matches(all_finished)
-    db_manager.save_players(elo_ratings, player_stats, last_played_dict)
-    db_manager.save_upcoming(all_upcoming)
+    db_manager.save_matches(all_finished) # Solo añadimos a la DB los nuevos que faltaban
+    db_manager.save_players(elo_ratings, player_stats, last_played_dict) # Sobreescribimos stats correctos
+    db_manager.save_upcoming(all_upcoming) # Reemplazamos la cartelera con la de hoy
 
-    log.info("Scraping Finalizado Exitosamente (Solo SQLite).")
+    log.info("Scraping Finalizado Exitosamente (Modo DB-Only).")
 
 if __name__ == "__main__":
     asyncio.run(scrape())
